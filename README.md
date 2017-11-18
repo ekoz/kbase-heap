@@ -22,6 +22,7 @@ JVM 浅析和线上系统性问题分析思路
 ### CMS收集器
 ### G1收集器
 ## JVM常用配置
+
 ### 内存相关
 	-Xmn
 	-Xms
@@ -30,16 +31,21 @@ JVM 浅析和线上系统性问题分析思路
 	-XX:MaxPermSize
 	-Xss
 	-XX:SurvivorRatio=5
+
 ### 回收器相关
 	-XX:+UseParNewGC 
 	-XX:+CMSParallelRemarkEnabled 
 	-XX:+UseConcMarkSweepGC
+
 ### GC日志相关
 	-XX:+PrintGCDetails
 	-XX:+HeapDumpOnOutOfMemoryError
+
 ### 其他
 详见 [JVM系列三:JVM参数设置、分析](https://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html)
+
 ## 线上系统性问题分析思路和常用命令
+
 * df –lh 查询磁盘大小，请重视linux挂载点概念
 
 ![磁盘大小](/df.png)
