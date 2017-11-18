@@ -52,7 +52,9 @@ JVM 浅析和线上系统性问题分析思路
 
 * free –g/-m 查询内存大小
 * netstat –an|grep CLOSE_WAIT –c 查询等待关闭连接数，详细指令如下：
-		netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+
+	netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+
 * top
 		Shift+p 按CPU占用率倒序
 		Shift+m 按内存占用率倒序
