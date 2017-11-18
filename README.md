@@ -42,7 +42,7 @@ JVM 浅析和线上系统性问题分析思路
 ## 线上系统性问题分析思路和常用命令
 * df –lh 查询磁盘大小，请重视linux挂载点概念
 
-![磁盘大小](/heap.png)
+![磁盘大小](/df.png)
 
 * free –g/-m 查询内存大小
 * netstat –an|grep CLOSE_WAIT –c 查询等待关闭连接数，详细指令如下：
