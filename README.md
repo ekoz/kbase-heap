@@ -53,11 +53,15 @@ JVM 浅析和线上系统性问题分析思路
 * free –g/-m 查询内存大小
 * netstat –an|grep CLOSE_WAIT –c 查询等待关闭连接数，详细指令如下：
 
-	netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+		netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
+
+* ulimit -a / ulimit -u 102400 / ulimit -n 102400
 
 * top
+
 		Shift+p 按CPU占用率倒序
 		Shift+m 按内存占用率倒序
+
 * top –H –p pid 通过指定的进程id查看线程id，可以查看到具体哪些线程CPU占用率飙高，将线程id转成16进制，可以在cpu100.txt中找到对应的线程信息
 * /home/xiaoi/java/jdk/bin/jstack pid > /tmp/xiaoi/cpu100.txt
 * /home/xiaoi/java/jdk/bin/jstat –gcutil pid 3000
