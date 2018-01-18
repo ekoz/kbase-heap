@@ -44,6 +44,8 @@ JVM 浅析和线上系统性问题分析思路
 ### 其他
 详见 [JVM系列三:JVM参数设置、分析](https://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html)
 
+[JVM调优总结 -Xms -Xmx -Xmn -Xss](http://unixboy.iteye.com/blog/174173/)
+
 ## 线上系统性问题分析思路和常用命令
 
 * df –lh 查询磁盘大小，请重视linux挂载点概念
