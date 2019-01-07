@@ -74,6 +74,10 @@ JVM 浅析和线上系统性问题分析思路
 * /home/xiaoi/java/jdk/bin/jstat –gcutil pid 3000
 * /home/xiaoi/java/jdk/bin/jmap -heap pid
 
+## 常用 Dump 分析工具
+* [threaddump-analyzer](http://spotify.github.io/threaddump-analyzer/)
+* [fastthread.io](http://fastthread.io/)
+
 ## IBM J9 VM
 详见 [垃圾收集策略，第 1 部分](https://www.ibm.com/developerworks/cn/java/j-ibmjava2/)
 [垃圾收集策略，第 2 部分](https://www.ibm.com/developerworks/cn/java/j-ibmjava3/)
