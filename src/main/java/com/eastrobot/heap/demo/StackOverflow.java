@@ -1,7 +1,7 @@
 /*
  * Power by www.xiaoi.com
  */
-package com.eastrobot;
+package com.eastrobot.heap.demo;
 /**
  * Java栈溢出
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
