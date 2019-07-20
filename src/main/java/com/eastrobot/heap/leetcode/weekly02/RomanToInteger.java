@@ -1,7 +1,7 @@
 /*
  * Powered by http://www.xiaoi.com
  */
-package com.eastrobot.heap.leetcode.week02;
+package com.eastrobot.heap.leetcode.weekly02;
 
 import java.util.HashMap;
 import java.util.Map;

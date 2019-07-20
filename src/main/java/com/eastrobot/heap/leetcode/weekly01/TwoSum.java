@@ -1,7 +1,7 @@
 /*
  * Powered by http://www.xiaoi.com
  */
-package com.eastrobot.heap.leetcode.week01;
+package com.eastrobot.heap.leetcode.weekly01;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
