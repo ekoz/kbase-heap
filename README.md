@@ -58,6 +58,14 @@ JVM 浅析和线上系统性问题分析思路
 ![磁盘大小](/df.png)
 
 * free –g/-m 查询内存大小
+* buff/cache 内存释放：
+
+    ```
+    sync;
+    echo 3 > /proc/sys/vm/drop_caches;
+    echo 0 > /proc/sys/vm/drop_caches;
+    ```
+    
 * netstat –an&#124;grep CLOSE_WAIT –c 查询等待关闭连接数，详细指令如下：
 
 		netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
