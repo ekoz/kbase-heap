@@ -3,6 +3,8 @@
  */
 package com.eastrobot.heap.demo;
 
+import org.openjdk.jol.info.ClassLayout;
+
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
  * @version v1.0
@@ -13,10 +15,15 @@ public class MainTests {
     public static void main(String[] args) throws InterruptedException {
         Thread.sleep(5*1000);
 
+
         byte[] bytes = new byte[1024*1024]; //1M
         MyThread myThread = new MyThread();
         Thread t1 = new Thread(myThread);
         t1.start();
+
+        System.out.println(ClassLayout.parseClass(MainTests.class).toPrintable());
+        System.out.println("------");
+        System.out.println(ClassLayout.parseInstance(myThread).toPrintable());
 
         System.out.println(queryCount());
 
