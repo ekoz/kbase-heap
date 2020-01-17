@@ -45,11 +45,21 @@ JVM 浅析和线上系统性问题分析思路
 ### GC日志相关
 	-Xloggc:/home/xiaoi/gc_6600.log
 	-XX:+PrintGCDetails
-	-XX:+HeapDumpOnOutOfMemoryError
 	-XX:+PrintGCTimeStamps
+	-XX:+PrintHeapAtGC
+	# 打印对象年龄
+	-XX:+PrintTenuringDistribution
+	-XX:+HeapDumpOnOutOfMemoryError
+	-XX:HeapDumpPath=/home/xiaoi/dump_logs_search/
+	
+### jconsole 远程调试相关
+    -Dcom.sun.management.jmxremote 
+    -Dcom.sun.management.jmxremote.ssl=false 
+    -Dcom.sun.management.jmxremote.authenticate=false 
+    -Dcom.sun.management.jmxremote.port=22422
 
 ### demo
-	JAVA_OPTIONS="-server -Xmn6G -Xms16G -Xmx16G -XX:PermSize=512M -XX:MaxPermSize=512M -Xss256k -Xconcurrentio -XX:SurvivorRatio=5 -XX:TargetSurvivorRatio=90 -XX:MaxTenuringThreshold=31 -XX:CMSInitiatingOccupancyFraction=90 -XX:MaxDirectMemorySize=256M -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:+UseConcMarkSweepGC -Djava.nio.channels.spi.SelectorProvider=sun.nio.ch.EPollSelectorProvider -Dsun.net.inetaddr.ttl=60 -Dorg.mortbay.jetty.Request.maxFormContentSize=-1 -Djava.awt.headless=true -Dsolr.solr.home=/home/xiaoi/jetty_search_6600/solr_home/solr -XX:-DontCompileHugeMethods -Xloggc:/home/xiaoi/gc_6600.log -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError"
+	JAVA_OPTIONS="-server -Xmn6G -Xms16G -Xmx16G -XX:PermSize=512M -XX:MaxPermSize=512M -Xss256k -Xconcurrentio -XX:SurvivorRatio=5 -XX:TargetSurvivorRatio=90 -XX:MaxTenuringThreshold=31 -XX:CMSInitiatingOccupancyFraction=90 -XX:MaxDirectMemorySize=256M -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:+UseConcMarkSweepGC -Djava.nio.channels.spi.SelectorProvider=sun.nio.ch.EPollSelectorProvider -Dsun.net.inetaddr.ttl=60 -Dorg.mortbay.jetty.Request.maxFormContentSize=-1 -Djava.awt.headless=true -Dsolr.solr.home=/home/xiaoi/jetty_search_6600/solr_home/solr -XX:-DontCompileHugeMethods -Xloggc:/home/xiaoi/gc_6600.log -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/xiaoi/dump_logs_search/"
 
 ### 其他
 详见 [JVM系列三:JVM参数设置、分析](https://www.cnblogs.com/redcreen/archive/2011/05/04/2037057.html)
