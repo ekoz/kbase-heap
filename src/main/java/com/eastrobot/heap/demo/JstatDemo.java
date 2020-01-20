@@ -5,32 +5,36 @@ package com.eastrobot.heap.demo;
 
 import org.openjdk.jol.info.ClassLayout;
 
+
 /**
+ * jstat -gcutil
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
  * @version v1.0
  * @date 2020/1/9 10:14
  */
-public class MainTests {
+public class JstatDemo {
 
     public static void main(String[] args) throws InterruptedException {
         Thread.sleep(5*1000);
 
 
-        byte[] bytes = new byte[1024*1024]; //1M
-        MyThread myThread = new MyThread();
-        Thread t1 = new Thread(myThread);
-        t1.start();
+        StringBuffer sb = new StringBuffer();
+        sb.append("1");
 
-        System.out.println(ClassLayout.parseClass(MainTests.class).toPrintable());
+
+        byte[] bytes = new byte[1024*1024]; //1M
+        final Thread t1 = new Thread(() -> System.out.println("MyThread"));
+
+        System.out.println(ClassLayout.parseClass(JstatDemo.class).toPrintable());
         System.out.println("------");
-        System.out.println(ClassLayout.parseInstance(myThread).toPrintable());
+        System.out.println(ClassLayout.parseInstance(sb).toPrintable());
 
         System.out.println(queryCount());
 
         for (int i=0;i<10;i++){
             String s = new String(bytes);
             System.out.println(System.currentTimeMillis() + " -> " + s.length());
-            t1.sleep(1*30*1000);
+            t1.sleep(1000);
         }
     }
 
@@ -38,13 +42,5 @@ public class MainTests {
         int i=2;
         int k=4;
         return i*k;
-    }
-}
-
-class MyThread implements Runnable{
-
-    @Override
-    public void run() {
-        System.out.println("MyThread");
     }
 }
