@@ -1,0 +1,58 @@
+Compiled from "ReturnFinallyDemo.java"
+public class com.eastrobot.heap.thread.ReturnFinallyDemo {
+  public com.eastrobot.heap.thread.ReturnFinallyDemo();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  private static java.lang.Integer get(java.lang.Integer, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: invokevirtual #2                  // Method java/lang/Integer.intValue:()I
+       4: aload_1
+       5: invokevirtual #2                  // Method java/lang/Integer.intValue:()I
+       8: idiv
+       9: invokestatic  #3                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      12: astore_2
+      13: getstatic     #4                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      16: ldc           #5                  // String 已返回数值
+      18: invokevirtual #6                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      21: aload_2
+      22: areturn
+      23: astore_2
+      24: aload_2
+      25: invokevirtual #8                  // Method java/lang/Exception.printStackTrace:()V
+      28: getstatic     #4                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      31: ldc           #5                  // String 已返回数值
+      33: invokevirtual #6                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      36: goto          50
+      39: astore_3
+      40: getstatic     #4                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      43: ldc           #5                  // String 已返回数值
+      45: invokevirtual #6                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      48: aload_3
+      49: athrow
+      50: getstatic     #4                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      53: ldc           #9                  // String 本剧文本不会输出
+      55: invokevirtual #6                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      58: iconst_0
+      59: invokestatic  #3                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      62: areturn
+    Exception table:
+       from    to  target type
+           0    13    23   Class java/lang/Exception
+           0    13    39   any
+          23    28    39   any
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: getstatic     #4                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: bipush        6
+       5: invokestatic  #3                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       8: iconst_2
+       9: invokestatic  #3                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      12: invokestatic  #10                 // Method get:(Ljava/lang/Integer;Ljava/lang/Integer;)Ljava/lang/Integer;
+      15: invokevirtual #11                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+      18: return
+}

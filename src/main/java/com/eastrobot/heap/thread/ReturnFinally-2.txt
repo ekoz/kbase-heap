@@ -1,0 +1,41 @@
+Compiled from "ReturnFinallyDemo.java"
+public class com.eastrobot.heap.thread.ReturnFinallyDemo {
+  public com.eastrobot.heap.thread.ReturnFinallyDemo();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  private static java.lang.Integer get(java.lang.Integer, java.lang.Integer);
+    Code:
+       0: aload_0
+       1: invokevirtual #2                  // Method java/lang/Integer.intValue:()I
+       4: aload_1
+       5: invokevirtual #2                  // Method java/lang/Integer.intValue:()I
+       8: idiv
+       9: invokestatic  #3                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      12: areturn
+      13: astore_2
+      14: aload_2
+      15: invokevirtual #5                  // Method java/lang/Exception.printStackTrace:()V
+      18: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      21: ldc           #7                  // String 本句文本不会输出
+      23: invokevirtual #8                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      26: iconst_0
+      27: invokestatic  #3                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      30: areturn
+    Exception table:
+       from    to  target type
+           0    12    13   Class java/lang/Exception
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
+       3: bipush        6
+       5: invokestatic  #3                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       8: iconst_2
+       9: invokestatic  #3                  // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+      12: invokestatic  #9                  // Method get:(Ljava/lang/Integer;Ljava/lang/Integer;)Ljava/lang/Integer;
+      15: invokevirtual #10                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+      18: return
+}
