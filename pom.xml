@@ -13,6 +13,7 @@
         <module>kbase-stack-jvm</module>
         <module>kbase-stack-prac</module>
         <module>kbase-stack-es</module>
+        <module>kbase-stack-mapstruct</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -30,6 +31,8 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <derby.version>10.14.2.0</derby.version>
+        <lombok.version>1.18.6</lombok.version>
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
@@ -58,13 +61,19 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.26</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.71</version>
+        </dependency>
+
 
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.6</version>
-            <scope>provided</scope>
+            <version>${lombok.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
