@@ -7,6 +7,8 @@ import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 /**
  * @author <a href="mailto:zhanzhao@outlook.com">eko.zhan</a>
  * @version v1.0
@@ -20,4 +22,6 @@ public interface BeanMapper {
     UserVO entityToVO(User user);
 
     RoleVO entityToVO(Role role);
+
+    List<UserVO> entityToVO(List<User> userList);
 }

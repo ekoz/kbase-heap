@@ -5,9 +5,11 @@ import com.google.common.collect.Lists;
 import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.vo.RoleVO;
 import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.entity.Role;
 import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.entity.User;
+import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.vo.UserVO;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,5 +41,20 @@ public class BeanMapperTests {
 
         RoleVO roleDto = BeanMapper.INSTANCE.entityToVO(role);
         System.out.println(JSON.toJSON(roleDto).toString());
+    }
+
+    @Test
+    public void testListEntityToVO(){
+        List<User> userList = Lists.newArrayList();
+        userList.add(User.builder().name("小红").build());
+        userList.add(User.builder().name("小明").build());
+        userList.add(User.builder().name("小黄").build());
+        userList.add(User.builder().name("小黑").build());
+        List<UserVO> userVOList = BeanMapper.INSTANCE.entityToVO(userList);
+
+        userVOList.forEach(userVO -> System.out.println(userVO.getName()));
+
+
+
     }
 }
