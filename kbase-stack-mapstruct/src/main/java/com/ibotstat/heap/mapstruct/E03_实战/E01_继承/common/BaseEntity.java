@@ -26,4 +26,5 @@ public class BaseEntity implements Serializable {
     protected String modifyUser;
     protected LocalDateTime createDate;
     protected LocalDateTime modifyDate;
+    protected Integer delFlag;
 }

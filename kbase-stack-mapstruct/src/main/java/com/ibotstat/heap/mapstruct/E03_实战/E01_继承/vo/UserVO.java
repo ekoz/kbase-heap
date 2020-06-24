@@ -21,8 +21,8 @@ public class UserVO extends BaseVO {
 
 
     @Builder
-    public UserVO(String id, String createUser, String modifyUser, String createDate, String modifyDate, String name, String age, String birthday) {
-        super(id, createUser, modifyUser, createDate, modifyDate);
+    public UserVO(String id, String createUser, String modifyUser, String createDate, String modifyDate, Integer delFlag, String name, String age, String birthday) {
+        super(id, createUser, modifyUser, createDate, modifyDate, delFlag);
         this.name = name;
         this.age = age;
         this.birthday = birthday;

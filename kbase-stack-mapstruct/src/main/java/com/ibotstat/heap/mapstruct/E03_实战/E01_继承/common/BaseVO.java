@@ -22,5 +22,6 @@ public class BaseVO implements Serializable {
     protected String modifyUser;
     protected String createDate;
     protected String modifyDate;
+    protected Integer delFlag;
 
 }

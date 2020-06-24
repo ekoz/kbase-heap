@@ -24,8 +24,8 @@ public class User extends BaseEntity {
     private LocalDate birthday;
 
     @Builder
-    public User(String id, String createUser, String modifyUser, LocalDateTime createDate, LocalDateTime modifyDate, String name, Integer age, LocalDate birthday) {
-        super(id, createUser, modifyUser, createDate, modifyDate);
+    public User(String id, String createUser, String modifyUser, LocalDateTime createDate, LocalDateTime modifyDate, Integer delFlag, String name, Integer age, LocalDate birthday) {
+        super(id, createUser, modifyUser, createDate, modifyDate, delFlag);
         this.name = name;
         this.age = age;
         this.birthday = birthday;
