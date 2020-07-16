@@ -81,6 +81,10 @@ JVM 浅析和线上系统性问题分析思路
     echo 0 > /proc/sys/vm/drop_caches;
     ```
     
+[内核珠玑：/proc/sys/vm/drop_caches为啥不灵了？](https://zhuanlan.zhihu.com/p/95813254)
+    
+[为什么手工DROP_CACHES之后CACHE值并未减少？](http://linuxperf.com/?p=201)
+    
 * netstat –an&#124;grep CLOSE_WAIT –c 查询等待关闭连接数，详细指令如下：
 
 		netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
