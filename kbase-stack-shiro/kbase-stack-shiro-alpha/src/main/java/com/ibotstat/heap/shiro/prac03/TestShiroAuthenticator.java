@@ -1,22 +1,24 @@
 /*
  * powered by https://zhengxinacc.com
  */
-package com.ibotstat.heap.shiro;
+package com.ibotstat.heap.shiro.prac03;
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.mgt.DefaultSecurityManager;
-import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.realm.text.IniRealm;
 import org.apache.shiro.subject.Subject;
 
 /**
+ * 自定义 realm 就能抛弃 shiro.ini，两个重要的方法是
+ * doGetAuthenticationInfo（负责认证）
+ * doGetAuthorizationInfo（负责授权）
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
  * @version v1.0
- * @date 2020/9/29 21:37
+ * @date 2020/10/9 20:03
  */
 public class TestShiroAuthenticator {
 
@@ -27,7 +29,12 @@ public class TestShiroAuthenticator {
 
 
         // 2.给安全管理器设置realm
-        securityManager.setRealm(new IniRealm("classpath:shiro.ini"));
+        KbsRealm kbsRealm = new KbsRealm();
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        credentialsMatcher.setHashAlgorithmName("md5");
+        credentialsMatcher.setHashIterations(1024);
+        kbsRealm.setCredentialsMatcher(credentialsMatcher);
+        securityManager.setRealm(kbsRealm);
 
         // 3.SecurityUtils 全局安全工具类
         SecurityUtils.setSecurityManager(securityManager);
@@ -53,5 +60,4 @@ public class TestShiroAuthenticator {
 
 
     }
-
 }
