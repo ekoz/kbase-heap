@@ -11,15 +11,4 @@
 
     <artifactId>kbase-stack-shiro-alpha</artifactId>
 
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>1.5.3</version>
-        </dependency>
-
-    </dependencies>
-
-
 </project>

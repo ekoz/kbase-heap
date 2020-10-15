@@ -11,9 +11,19 @@
     <packaging>pom</packaging>
     <modules>
         <module>kbase-stack-shiro-alpha</module>
+        <module>kbase-stack-shiro-boot</module>
     </modules>
 
     <artifactId>kbase-stack-shiro</artifactId>
 
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.5.3</version>
+        </dependency>
+
+    </dependencies>
 
 </project>
