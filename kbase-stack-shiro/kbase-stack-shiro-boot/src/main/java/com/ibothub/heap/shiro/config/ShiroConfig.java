@@ -5,6 +5,7 @@ package com.ibothub.heap.shiro.config;
 
 import com.google.common.collect.Maps;
 import com.ibothub.heap.shiro.realm.KbsRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -45,9 +46,12 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/v2/**", "anon");
         filterChainDefinitionMap.put("/webjars/**", "anon");
         filterChainDefinitionMap.put("/configuration/**", "anon");
-//        filterChainDefinitionMap.put("/login", "anon");
+
+        // 对用户注册，登录等地址拦截放行
+        filterChainDefinitionMap.put("/user/register", "anon");
+        filterChainDefinitionMap.put("/login", "anon");
+
         // authc 请求该类型的资源需要认证和授权
-//        map.put("/user", "authc");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
@@ -76,7 +80,15 @@ public class ShiroConfig {
     @Bean
     @Primary
     public Realm getRealm(){
-        return new KbsRealm();
+        KbsRealm kbsRealm = new KbsRealm();
+        // 修改凭证校验匹配器
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
+        // 设置加密算法
+        matcher.setHashAlgorithmName("MD5");
+        // 设置 hash 散列
+        matcher.setHashIterations(1024);
+        kbsRealm.setCredentialsMatcher(matcher);
+        return kbsRealm;
     }
 
 }

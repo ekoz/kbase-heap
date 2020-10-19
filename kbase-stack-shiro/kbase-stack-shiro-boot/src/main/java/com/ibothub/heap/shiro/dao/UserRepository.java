@@ -14,4 +14,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
+
+    /**
+     * 根据指定的用户名获取用户信息
+     * @param username
+     * @return
+     */
+    User findByUsername(String username);
 }

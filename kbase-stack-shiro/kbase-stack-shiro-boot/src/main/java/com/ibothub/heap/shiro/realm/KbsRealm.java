@@ -3,6 +3,8 @@
  */
 package com.ibothub.heap.shiro.realm;
 
+import com.ibothub.heap.shiro.model.entity.User;
+import com.ibothub.heap.shiro.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,6 +14,9 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.annotation.Resource;
 
 /**
  * 自定义 realm，将认证/授权数据的读取方法转为数据库实现
@@ -22,6 +27,12 @@ import org.apache.shiro.util.ByteSource;
  */
 public class KbsRealm extends AuthorizingRealm {
 
+    @Value("${shiro.md5:false}")
+    Boolean enableShiroMd5;
+
+    @Resource
+    UserService userService;
+
     /**
      * 负责认证
      * @param token
@@ -30,15 +41,16 @@ public class KbsRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String principal = (String)token.getPrincipal();
+        String principal = (String) token.getPrincipal();
         System.out.println(principal);
         // 根据用户名查询数据库
-        if ("ekoz".equals(principal)){
-            return new SimpleAuthenticationInfo("ekoz", "ekoz88", this.getName());
+        User user = userService.findByUsername(principal);
+        if (enableShiroMd5) {
+            return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), ByteSource.Util.bytes(user.getSalt()), this.getName());
+        } else {
+            return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), this.getName());
         }
-        return null;
     }
-
 
     /**
      * 负责授权
@@ -49,6 +61,8 @@ public class KbsRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String primaryPrincipal = (String) principals.getPrimaryPrincipal();
         System.out.println("身份信息：" + primaryPrincipal);
+
+        // 根据主身份信息获取 角色 和 权限信息
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
         // 添加角色

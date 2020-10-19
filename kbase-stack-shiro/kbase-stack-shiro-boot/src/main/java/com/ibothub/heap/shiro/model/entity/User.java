@@ -3,8 +3,10 @@
  */
 package com.ibothub.heap.shiro.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +20,8 @@ import java.time.LocalDate;
 @Data
 @Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "sys_user")
 public class User implements Serializable {
     @Id
@@ -27,6 +31,8 @@ public class User implements Serializable {
     private String username;
     @Column
     private String password;
+    @Column
+    private String salt;
     @Column(name = "username_cn")
     private String usernameCN;
     @Column
