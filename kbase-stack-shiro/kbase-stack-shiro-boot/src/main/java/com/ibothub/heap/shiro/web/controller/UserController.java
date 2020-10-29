@@ -3,11 +3,9 @@
  */
 package com.ibothub.heap.shiro.web.controller;
 
-import com.ibothub.heap.shiro.dao.UserRepository;
 import com.ibothub.heap.shiro.model.entity.User;
 import com.ibothub.heap.shiro.service.UserService;
 import io.swagger.annotations.Api;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

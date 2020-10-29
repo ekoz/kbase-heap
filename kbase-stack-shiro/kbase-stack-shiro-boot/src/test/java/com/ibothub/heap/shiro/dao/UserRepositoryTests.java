@@ -3,6 +3,8 @@
  */
 package com.ibothub.heap.shiro.dao;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.ibothub.heap.shiro.model.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,23 +23,35 @@ import javax.annotation.Resource;
 public class UserRepositoryTests {
 
     @Resource
-    UserRepository userRepository;
+    UserMapper userMapper;
 
     @Test
     public void testFind(){
-        userRepository.findAll().forEach(user -> System.out.println(user.toString()));
+        userMapper.selectList(null).forEach(user -> System.out.println(user.toString()));
     }
 
     @Test
     public void testSave(){
         User user = User.builder()
-                .username("ekoz")
+                .username("ekoz1")
                 .password("ekoz88")
                 .age(18)
                 .sex(0)
-                .usernameCN("展昭")
+                .usernameCN("展昭1")
                 .build();
-        userRepository.save(user);
+        userMapper.insert(user);
+    }
+
+    @Test
+    public void testDelete(){
+//        int i = userMapper.deleteById(5);
+//        System.out.println(i);
+        LambdaQueryWrapper<User> queryWrapper = Wrappers.lambdaQuery(User.class);
+        queryWrapper.eq(User::getUsername, "ekoz1");
+        int i = userMapper.delete(queryWrapper);
+        System.out.println(i);
+
+
     }
 
 }

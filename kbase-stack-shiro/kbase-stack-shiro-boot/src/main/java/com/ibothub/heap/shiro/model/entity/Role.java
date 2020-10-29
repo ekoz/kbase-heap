@@ -13,31 +13,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
  * @version v1.0
- * @date 2020/10/14 23:59
+ * @date 2020/10/29 21:31
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("sys_user")
-public class User implements Serializable {
+@TableName("sys_role")
+public class Role implements Serializable {
 
     @TableId(type= IdType.AUTO)
     private Integer id;
-    private String username;
-    private String password;
-    private String salt;
-    @TableField("username_cn")
-    private String usernameCN;
-    private String remark;
-    private String email;
-    private String phone;
-    private Integer age;
-    private Integer sex;
-    private LocalDate birthday;
+
+    private String name;
+
+    @TableField("key_")
+    private String key;
+
 }

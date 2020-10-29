@@ -25,12 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @GetMapping
-    public Integer login(){
-        return 0;
+    public String login(){
+        return "";
     }
 
     @PostMapping
-    public Integer login(String username, String password){
+    public String login(String username, String password){
         // 获取主体对象
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -38,7 +38,7 @@ public class LoginController {
         try {
             subject.login(token);
             System.out.println("认证状态，" + subject.isAuthenticated());
-            return 1;
+            return subject.getSession().getId().toString();
         } catch (UnknownAccountException e) {
             e.printStackTrace();
             System.out.println("认证失败，用户名不存在");
@@ -46,6 +46,6 @@ public class LoginController {
             e.printStackTrace();
             System.out.println("认证失败，密码错误");
         }
-        return 0;
+        return "login error";
     }
 }

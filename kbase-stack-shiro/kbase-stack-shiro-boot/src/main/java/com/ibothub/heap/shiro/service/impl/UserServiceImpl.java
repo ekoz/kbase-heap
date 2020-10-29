@@ -3,7 +3,8 @@
  */
 package com.ibothub.heap.shiro.service.impl;
 
-import com.ibothub.heap.shiro.dao.UserRepository;
+import com.google.common.collect.Maps;
+import com.ibothub.heap.shiro.dao.UserMapper;
 import com.ibothub.heap.shiro.model.entity.User;
 import com.ibothub.heap.shiro.service.UserService;
 import com.ibothub.heap.shiro.util.SaltUtils;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
@@ -22,7 +25,7 @@ import javax.annotation.Resource;
 public class UserServiceImpl implements UserService {
 
     @Resource
-    UserRepository userRepository;
+    UserMapper userMapper;
     @Value("${shiro.md5:false}")
     Boolean enableShiroMd5;
 
@@ -43,12 +46,16 @@ public class UserServiceImpl implements UserService {
                 .salt(salt)
                 .build();
 
-        userRepository.save(user);
+        userMapper.insert(user);
         return user;
     }
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        Map<String, Object> queryMap = Maps.newHashMap();
+        queryMap.put("username", username);
+        List<User> userList = userMapper.selectByMap(queryMap);
+        if (userList.size()>0) return userList.get(0);
+        return null;
     }
 }
