@@ -4,8 +4,15 @@
 package com.ibothub.heap.shiro.dao;
 
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ibothub.heap.shiro.model.entity.User;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
@@ -14,4 +21,7 @@ import com.ibothub.heap.shiro.model.entity.User;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+    List<User> selectByRoleIds();
+
+    IPage<User> selectByUsername(Page<User> page, @Param(Constants.WRAPPER) Wrapper<User> wrapper);
 }

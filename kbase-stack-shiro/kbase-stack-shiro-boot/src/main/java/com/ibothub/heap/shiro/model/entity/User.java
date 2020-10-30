@@ -40,4 +40,7 @@ public class User implements Serializable {
     private Integer age;
     private Integer sex;
     private LocalDate birthday;
+
+    @TableField(exist = false)
+    private String summary;
 }
