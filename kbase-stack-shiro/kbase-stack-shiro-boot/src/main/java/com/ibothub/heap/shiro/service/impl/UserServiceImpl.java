@@ -3,6 +3,7 @@
  */
 package com.ibothub.heap.shiro.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Maps;
 import com.ibothub.heap.shiro.dao.UserMapper;
 import com.ibothub.heap.shiro.model.entity.User;
@@ -22,7 +23,7 @@ import java.util.Map;
  * @date 2020/10/19 21:34
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     @Resource
     UserMapper userMapper;

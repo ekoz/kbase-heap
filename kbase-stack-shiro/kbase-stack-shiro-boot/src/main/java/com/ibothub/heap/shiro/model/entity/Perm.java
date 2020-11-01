@@ -34,6 +34,9 @@ public class Perm implements Serializable {
     @TableField("url_")
     private String url;
 
+    @TableField("rule_")
+    private String rule;
+
     @TableField("type_")
     private Integer type;
 }

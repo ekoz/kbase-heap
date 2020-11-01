@@ -4,6 +4,7 @@
 package com.ibothub.heap.shiro.service;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.ibothub.heap.shiro.model.entity.Perm;
 import com.ibothub.heap.shiro.model.entity.Role;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,20 +21,15 @@ import java.util.List;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class RoleServiceTests {
+public class PermServiceTests {
 
     @Resource
-    RoleService roleService;
-
-    @Test
-    public void testGetOne(){
-        Role role = roleService.getOne(Wrappers.lambdaQuery(), false);
-        System.out.println(role.toString());
-    }
+    PermService permService;
 
     @Test
     public void testGetRoleListByUsername(){
-        List<String> ekoz = roleService.getKeysByUsername("ekozhan");
+        permService.getKeysByUsername("ekozhan")
+                .forEach(System.out::println);
 
     }
 }

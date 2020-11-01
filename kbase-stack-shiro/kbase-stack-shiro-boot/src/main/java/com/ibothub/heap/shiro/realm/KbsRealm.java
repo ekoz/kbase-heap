@@ -4,6 +4,8 @@
 package com.ibothub.heap.shiro.realm;
 
 import com.ibothub.heap.shiro.model.entity.User;
+import com.ibothub.heap.shiro.service.PermService;
+import com.ibothub.heap.shiro.service.RoleService;
 import com.ibothub.heap.shiro.service.UserService;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -32,6 +34,10 @@ public class KbsRealm extends AuthorizingRealm {
 
     @Resource
     UserService userService;
+    @Resource
+    RoleService roleService;
+    @Resource
+    PermService permService;
 
     /**
      * 负责认证
@@ -45,11 +51,14 @@ public class KbsRealm extends AuthorizingRealm {
         System.out.println(principal);
         // 根据用户名查询数据库
         User user = userService.findByUsername(principal);
-        if (enableShiroMd5) {
-            return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), ByteSource.Util.bytes(user.getSalt()), this.getName());
-        } else {
-            return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), this.getName());
+        if (user!=null){
+            if (enableShiroMd5) {
+                return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), ByteSource.Util.bytes(user.getSalt()), this.getName());
+            } else {
+                return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), this.getName());
+            }
         }
+        return null;
     }
 
     /**
@@ -62,18 +71,20 @@ public class KbsRealm extends AuthorizingRealm {
         String primaryPrincipal = (String) principals.getPrimaryPrincipal();
         System.out.println("身份信息：" + primaryPrincipal);
 
+
+
         // 根据主身份信息获取 角色 和 权限信息
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-
         // 添加角色
-        authorizationInfo.addRole("admin");
-        authorizationInfo.addRole("user");
+        roleService.getKeysByUsername(primaryPrincipal)
+                .forEach(authorizationInfo::addRole);
 
         // 添加权限
         // user:update:*
         // role:read
         // dept:add:001
-        authorizationInfo.addStringPermission("user:*");
+        permService.getKeysByUsername(primaryPrincipal)
+                .forEach(authorizationInfo::addStringPermission);
 
         return authorizationInfo;
     }
