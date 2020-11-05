@@ -15,6 +15,7 @@
         <module>kbase-stack-es</module>
         <module>kbase-stack-mapstruct</module>
         <module>kbase-stack-shiro</module>
+        <module>kbase-stack-redis</module>
     </modules>
     <packaging>pom</packaging>
 
