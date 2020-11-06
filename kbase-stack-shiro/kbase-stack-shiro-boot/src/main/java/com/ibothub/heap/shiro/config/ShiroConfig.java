@@ -4,8 +4,10 @@
 package com.ibothub.heap.shiro.config;
 
 import com.google.common.collect.Maps;
+import com.ibothub.heap.shiro.cache.RedisCacheManager;
 import com.ibothub.heap.shiro.realm.KbsRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -88,6 +90,16 @@ public class ShiroConfig {
         // 设置 hash 散列
         matcher.setHashIterations(1024);
         kbsRealm.setCredentialsMatcher(matcher);
+
+        // 开启缓存管理
+//        kbsRealm.setCacheManager(new EhCacheManager());
+        kbsRealm.setCacheManager(new RedisCacheManager());
+        kbsRealm.setCachingEnabled(true);
+        kbsRealm.setAuthenticationCacheName("authenticationCache");
+        kbsRealm.setAuthenticationCachingEnabled(true);
+        kbsRealm.setAuthorizationCacheName("authorizationCacheName");
+        kbsRealm.setAuthorizationCachingEnabled(true);
+
         return kbsRealm;
     }
 
