@@ -112,3 +112,6 @@ JVM 浅析和线上系统性问题分析思路
 ## JRockit
 	/home/Oracle/Middleware/wlserver_12.1/common/bin/commEnv.sh
 	/home/Oracle/Middleware/user_projects/domains/srcb/bin/setDomainEnv.sh
+
+## G1 GC 
+[Java Hotspot G1 GC的一些关键技术](https://tech.meituan.com/2016/09/23/g1.html)
