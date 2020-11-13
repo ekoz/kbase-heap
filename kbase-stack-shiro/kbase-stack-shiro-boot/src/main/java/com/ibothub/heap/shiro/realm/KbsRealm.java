@@ -7,15 +7,12 @@ import com.ibothub.heap.shiro.model.entity.User;
 import com.ibothub.heap.shiro.service.PermService;
 import com.ibothub.heap.shiro.service.RoleService;
 import com.ibothub.heap.shiro.service.UserService;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import com.ibothub.heap.shiro.util.ShiroByteSource;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.Resource;
@@ -51,9 +48,10 @@ public class KbsRealm extends AuthorizingRealm {
         System.out.println(principal);
         // 根据用户名查询数据库
         User user = userService.findByUsername(principal);
+
         if (user!=null){
             if (enableShiroMd5) {
-                return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), ByteSource.Util.bytes(user.getSalt()), this.getName());
+                return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), ShiroByteSource.Util.bytes(user.getSalt()), this.getName());
             } else {
                 return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), this.getName());
             }

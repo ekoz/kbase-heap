@@ -20,12 +20,9 @@ import java.util.Set;
  * @date 2020/11/6 21:00
  */
 @NoArgsConstructor
-@AllArgsConstructor
 public class RedisCache<K, V> implements Cache<K, V> {
 
-    private String cacheName;
-
-    static RedisTemplate getRedisTemplate(){
+    private static RedisTemplate getRedisTemplate(){
         RedisTemplate redisTemplate = (RedisTemplate)SpringContextUtils.getBean("redisTemplate");
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
@@ -46,7 +43,6 @@ public class RedisCache<K, V> implements Cache<K, V> {
     public V put(K k, V v) throws CacheException {
         System.out.println("put key: " +  k);
         System.out.println("put value: " + v);
-        getRedisTemplate().setKeySerializer(new StringRedisSerializer());
         getRedisTemplate().opsForValue().set(k.toString(), v);
         return null;
     }

@@ -92,7 +92,7 @@ public class ShiroConfig {
         kbsRealm.setCredentialsMatcher(matcher);
 
         // 开启缓存管理
-//        kbsRealm.setCacheManager(new EhCacheManager());
+///        kbsRealm.setCacheManager(new EhCacheManager());
         kbsRealm.setCacheManager(new RedisCacheManager());
         kbsRealm.setCachingEnabled(true);
         kbsRealm.setAuthenticationCacheName("authenticationCache");

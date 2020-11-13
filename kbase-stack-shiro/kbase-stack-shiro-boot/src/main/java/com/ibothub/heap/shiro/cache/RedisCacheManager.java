@@ -8,9 +8,8 @@ import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-
 /**
+ * 自定义shiro缓存器
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
  * @version v1.0
  * @date 2020/11/6 20:58
@@ -21,6 +20,6 @@ public class RedisCacheManager implements CacheManager {
     @Override
     public <K, V> Cache<K, V> getCache(String cacheName) throws CacheException {
         System.out.println(cacheName);
-        return new RedisCache<>(cacheName);
+        return new RedisCache<>();
     }
 }
