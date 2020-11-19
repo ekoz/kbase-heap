@@ -20,6 +20,6 @@ public class RedisCacheManager implements CacheManager {
     @Override
     public <K, V> Cache<K, V> getCache(String cacheName) throws CacheException {
         System.out.println(cacheName);
-        return new RedisCache<>();
+        return new RedisCache<>(cacheName);
     }
 }

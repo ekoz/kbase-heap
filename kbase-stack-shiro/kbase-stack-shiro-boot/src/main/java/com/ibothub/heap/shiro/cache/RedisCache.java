@@ -5,7 +5,9 @@ package com.ibothub.heap.shiro.cache;
 
 import com.ibothub.heap.shiro.util.SpringContextUtils;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -20,7 +22,12 @@ import java.util.Set;
  * @date 2020/11/6 21:00
  */
 @NoArgsConstructor
+@AllArgsConstructor
 public class RedisCache<K, V> implements Cache<K, V> {
+
+    @Getter
+    @Setter
+    private String cacheName;
 
     private static RedisTemplate getRedisTemplate(){
         RedisTemplate redisTemplate = (RedisTemplate)SpringContextUtils.getBean("redisTemplate");
@@ -32,9 +39,12 @@ public class RedisCache<K, V> implements Cache<K, V> {
     @Override
     public V get(K k) throws CacheException {
         System.out.println("get key: " +  k);
-        System.out.println(getRedisTemplate().opsForValue().get(k.toString()));
-        if (getRedisTemplate().opsForValue().get(k.toString())!=null){
-            return (V)getRedisTemplate().opsForValue().get(k.toString());
+//        System.out.println(getRedisTemplate().opsForValue().get(k.toString()));
+//        if (getRedisTemplate().opsForValue().get(k.toString())!=null){
+//            return (V)getRedisTemplate().opsForValue().get(k.toString());
+//        }
+        if (getRedisTemplate().opsForHash().get(getCacheName(), k.toString())!=null){
+            return (V)getRedisTemplate().opsForHash().get(getCacheName(), k.toString());
         }
         return null;
     }
@@ -43,32 +53,34 @@ public class RedisCache<K, V> implements Cache<K, V> {
     public V put(K k, V v) throws CacheException {
         System.out.println("put key: " +  k);
         System.out.println("put value: " + v);
-        getRedisTemplate().opsForValue().set(k.toString(), v);
+//        getRedisTemplate().opsForValue().set(k.toString(), v);
+        getRedisTemplate().opsForHash().put(getCacheName(), k.toString(), v);
         return null;
     }
 
     @Override
     public V remove(K k) throws CacheException {
-        return null;
+
+        return (V) getRedisTemplate().opsForHash().delete(getCacheName(), k.toString());
     }
 
     @Override
     public void clear() throws CacheException {
-
+        getRedisTemplate().delete(getCacheName());
     }
 
     @Override
     public int size() {
-        return 0;
+        return getRedisTemplate().opsForHash().size(getCacheName()).intValue();
     }
 
     @Override
     public Set<K> keys() {
-        return null;
+        return getRedisTemplate().opsForHash().keys(getCacheName());
     }
 
     @Override
     public Collection<V> values() {
-        return null;
+        return getRedisTemplate().opsForHash().values(getCacheName());
     }
 }
