@@ -1,5 +1,15 @@
 # springboot2 es
 
+## docker 安装常见报错
+
+[Docker安装 elasticsearch 报错max virtual memory areas vm.max_map_count [65530] is too low](https://blog.csdn.net/xingfei_work/article/details/81463978)
+
+[max virtual memory areas vm.max_map_count [65530] is too low](https://github.com/docker-library/elasticsearch/issues/111)
+
+[dockercompose部署ES遇到 Error opening log file ‘logs/gc.log’: Permission denied](https://blog.csdn.net/qq_18848239/article/details/108158741)
+
+elasticsearch-head 需要跨域访问
+
 ## script
 ```
 POST /blog/_doc/1

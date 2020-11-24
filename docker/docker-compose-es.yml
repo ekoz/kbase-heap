@@ -8,7 +8,11 @@ services:
     environment:
     - cluster.name=ibotEsApp
     - bootstrap.memory_lock=true
-    - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    - TAKE_FILE_OWNERSHIP=true
+    - "http.cors.enabled=true"
+    - "http.cors.allow-origin=*"
+    - "transport.host=0.0.0.0"
+    - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
     ulimits:
       memlock:
         soft: -1
@@ -28,12 +32,19 @@ services:
     environment:
     - cluster.name=ibotEsApp
     - bootstrap.memory_lock=true
-    - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    - TAKE_FILE_OWNERSHIP=true
+    - "http.cors.enabled=true"
+    - "http.cors.allow-origin=*"
+    - "transport.host=0.0.0.0"
+    - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
     - "discovery.zen.ping.unicast.hosts=es-master-docker"
     ulimits:
       memlock:
         soft: -1
         hard: -1
+    ports:
+    - 9201:9200
+    - 9301:9300
     volumes:
     #      - ./elasticsearch/slave1/conf/es-slave1.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     - ./elasticsearch/slave1/data:/usr/share/elasticsearch/data
@@ -65,3 +76,8 @@ services:
     - elasticsearch-2
 networks:
   esnet:
+    driver: bridge
+  # default:
+  #   external:
+  #   # docker network create -d bridgeesnet
+  #     name: esnet
