@@ -2,8 +2,11 @@ version: '3'
 
 services:
   elasticsearch-1:
-    image: elasticsearch:6.8.7
+#    image: elasticsearch:6.8.7
     container_name: es-master-docker
+    build:
+      context: .
+      dockerfile: Dockerfile-es
     restart: always
     environment:
     - cluster.name=ibotEsApp

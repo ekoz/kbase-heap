@@ -10,6 +10,19 @@
 
 elasticsearch-head 需要跨域访问
 
+application/x-www-form-urlencoded 不支持JSON格式的内容体，需要修改 _site/vendor.js 中的内容
+采用 docker cp 的方法临时修改
+
+[elasticsearch-head 6.x 问题application/x-www-form-urlencoded](https://blog.csdn.net/qq_30540299/article/details/84103282)
+
+## 参考用例
+
+[docker-compose搭建Elasticsearch集群和Kibana](https://blog.csdn.net/banmingi/article/details/102882197)
+
+[docker-compose搭建elasticsearch集群](https://blog.csdn.net/epitomizelu/article/details/105592906)
+
+[docker自定义elasticsearch镜像——集成IK分词器](https://blog.csdn.net/s1078229131/article/details/90036289)
+
 ## script
 ```
 POST /blog/_doc/1
