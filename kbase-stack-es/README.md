@@ -11,7 +11,7 @@
 elasticsearch-head 需要跨域访问
 
 application/x-www-form-urlencoded 不支持JSON格式的内容体，需要修改 _site/vendor.js 中的内容
-采用 docker cp 的方法临时修改
+采用 `docker cp vendor.js container_id:/usr/src/app/_site` 的方法临时修改
 
 [elasticsearch-head 6.x 问题application/x-www-form-urlencoded](https://blog.csdn.net/qq_30540299/article/details/84103282)
 
