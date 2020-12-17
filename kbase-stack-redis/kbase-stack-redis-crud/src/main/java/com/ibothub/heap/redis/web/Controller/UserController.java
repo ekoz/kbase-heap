@@ -3,6 +3,8 @@
  */
 package com.ibothub.heap.redis.web.Controller;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("user")
+@CacheConfig(cacheNames = "user")
 public class UserController {
 
     @Resource
@@ -33,6 +36,12 @@ public class UserController {
     public String get(String key){
         ValueOperations<String, String> opts = stringRedisTemplate.opsForValue();
         return opts.get(key);
+    }
+
+    @GetMapping("getCache")
+    @Cacheable
+    public String getCache(String key){
+        return key;
     }
 
 }
