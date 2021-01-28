@@ -20,7 +20,7 @@ public class DeptResp extends BaseVO {
 
     @Builder
     public DeptResp(String id, String createUser, String modifyUser, String createDate, String modifyDate, String name, DeptResp parent) {
-        super(id, createUser, modifyUser, createDate, modifyDate);
+        super(id, createUser, modifyUser, createDate, modifyDate, 0);
         this.name = name;
         this.parent = parent;
     }

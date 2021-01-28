@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * @author <a href="mailto:zhanzhao@outlook.com">eko.zhan</a>
+ * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
  * @version v1.0
  * @date 2020/6/17 9:31
  */

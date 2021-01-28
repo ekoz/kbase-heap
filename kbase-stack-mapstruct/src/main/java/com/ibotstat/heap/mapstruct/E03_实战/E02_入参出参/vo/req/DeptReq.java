@@ -23,7 +23,7 @@ public class DeptReq extends BaseVO {
 
     @Builder
     public DeptReq(String id, String createUser, String modifyUser, String createDate, String modifyDate, @NotEmpty String name, String parentId) {
-        super(id, createUser, modifyUser, createDate, modifyDate);
+        super(id, createUser, modifyUser, createDate, modifyDate, 0);
         this.name = name;
         this.parentId = parentId;
     }

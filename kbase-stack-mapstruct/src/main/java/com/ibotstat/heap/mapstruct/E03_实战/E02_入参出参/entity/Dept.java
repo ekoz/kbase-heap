@@ -23,7 +23,7 @@ public class Dept extends BaseEntity {
 
     @Builder
     public Dept(String id, String createUser, String modifyUser, LocalDateTime createDate, LocalDateTime modifyDate, String name, Dept parent) {
-        super(id, createUser, modifyUser, createDate, modifyDate);
+        super(id, createUser, modifyUser, createDate, modifyDate, 0);
         this.name = name;
         this.parent = parent;
     }
