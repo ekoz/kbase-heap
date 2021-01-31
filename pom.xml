@@ -16,6 +16,7 @@
         <module>kbase-stack-mapstruct</module>
         <module>kbase-stack-shiro</module>
         <module>kbase-stack-redis</module>
+        <module>kbase-stack-kafka</module>
     </modules>
     <packaging>pom</packaging>
 
