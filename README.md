@@ -68,6 +68,10 @@ JVM 浅析和线上系统性问题分析思路
 
 [Java中9种常见的CMS GC问题分析与解决-美团技术团队](https://mp.weixin.qq.com/s/BoMAIurKtQ8Wy1Vf_KkyGw)
 
+[Java Object Layout (JOL)](https://github.com/openjdk/jol)
+
+[jclasslib](https://github.com/ingokegel/jclasslib)
+
 ## 线上系统性问题分析思路和常用命令
 
 * df –lh 查询磁盘大小，请重视linux挂载点概念
