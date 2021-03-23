@@ -6,17 +6,7 @@
     <artifactId>kbase-heap</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>kbase-stack-mq</module>
-        <module>kbase-stack-proxy</module>
-        <module>kbase-stack-derby</module>
-        <module>kbase-stack-thread</module>
         <module>kbase-stack-jvm</module>
-        <module>kbase-stack-prac</module>
-        <module>kbase-stack-es</module>
-        <module>kbase-stack-mapstruct</module>
-        <module>kbase-stack-shiro</module>
-        <module>kbase-stack-redis</module>
-        <module>kbase-stack-kafka</module>
     </modules>
     <packaging>pom</packaging>
 
