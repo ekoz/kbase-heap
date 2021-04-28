@@ -17,6 +17,7 @@
         <module>kbase-stack-shiro</module>
         <module>kbase-stack-redis</module>
         <module>kbase-stack-kafka</module>
+        <module>kbase-stack-mongo</module>
     </modules>
     <packaging>pom</packaging>
 
