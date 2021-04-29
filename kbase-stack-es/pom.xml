@@ -11,6 +11,10 @@
 
     <artifactId>kbase-stack-es</artifactId>
 
+    <properties>
+        <elasticsearch.version>7.4.2</elasticsearch.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -20,6 +24,43 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.client</groupId>-->
+            <!--<artifactId>elasticsearch-rest-high-level-client</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.elasticsearch.client/transport &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.client</groupId>-->
+            <!--<artifactId>transport</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.elasticsearch.plugin/transport-netty4-client &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.plugin</groupId>-->
+            <!--<artifactId>transport-netty4-client</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch-core &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch</groupId>-->
+            <!--<artifactId>elasticsearch-core</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch</groupId>-->
+            <!--<artifactId>elasticsearch</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.elasticsearch.client</groupId>-->
+            <!--<artifactId>elasticsearch-rest-client</artifactId>-->
+            <!--<version>${elasticsearch.version}</version>-->
+        <!--</dependency>-->
+
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -37,13 +78,13 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.30</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.30</version>
-            <scope>test</scope>
-        </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-log4j12</artifactId>-->
+            <!--<version>1.7.30</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
         <dependency>
@@ -61,7 +102,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version>
+            <version>3.9</version>
         </dependency>
     </dependencies>
 

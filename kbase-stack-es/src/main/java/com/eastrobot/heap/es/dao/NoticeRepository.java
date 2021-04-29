@@ -5,6 +5,7 @@ package com.eastrobot.heap.es.dao;
 
 import com.eastrobot.heap.es.entity.Notice;
 import org.springframework.data.elasticsearch.repository.ElasticsearchCrudRepository;
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +15,7 @@ import java.util.Optional;
  * @version v1.0
  * @date 2020/4/29 17:51
  */
-public interface NoticeRepository extends ElasticsearchCrudRepository<Notice, String> {
+public interface NoticeRepository extends ElasticsearchRepository<Notice, String> {
 
     Optional<List<Notice>> findByTitleLike(String title);
 
