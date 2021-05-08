@@ -8,6 +8,10 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ResourceUtils;
 
@@ -70,9 +74,23 @@ public class NoticeRepositoryTests {
         noticeRepository.save(notice);
     }
 
+
+    //======================================================================================
+    //======================================================================================
+
     @Test
     public void testFindAll(){
         noticeRepository.findAll().forEach(notice -> System.out.println(notice.toString()));
+    }
+
+    @Test
+    public void testFindPage(){
+        PageRequest pageable = PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "contentCN"));
+        Page<Notice> page = noticeRepository.findAll(pageable);
+        System.out.println(page.getTotalElements());
+        System.out.println(page.getTotalPages());
+        page.forEach(System.out::println);
+
     }
 
 
@@ -84,6 +102,13 @@ public class NoticeRepositoryTests {
             notice.setDesc(notice.getContent());
             noticeRepository.save(notice);
         });
+    }
+
+    @Test
+    public void testFindByTitle(){
+        noticeRepository.findByTitle("服务")
+                .ifPresent(list -> list.forEach(notice -> System.out.println(notice.toString())))
+        ;
     }
 
     @Test

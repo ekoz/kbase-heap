@@ -34,9 +34,9 @@ public class Notice implements Serializable {
     private String title;
     @Field
     private String content;
-    @Field(analyzer="ik_max_word", searchAnalyzer = "ik_smart", type = FieldType.Text)
+    @Field
     private String contentCN;
-    @Field(analyzer="ik_max_word", searchAnalyzer = "ik_smart", type = FieldType.Text)
+    @Field
     private String desc;
 
 }

@@ -8,12 +8,16 @@
 
 [dockercompose部署ES遇到 Error opening log file ‘logs/gc.log’: Permission denied](https://blog.csdn.net/qq_18848239/article/details/108158741)
 
-elasticsearch-head 需要跨域访问
-
-application/x-www-form-urlencoded 不支持JSON格式的内容体，需要修改 _site/vendor.js 中的内容
-采用 `docker cp vendor.js container_id:/usr/src/app/_site` 的方法临时修改
+    elasticsearch-head 需要跨域访问
+    
+    application/x-www-form-urlencoded 不支持JSON格式的内容体，需要修改 _site/vendor.js 中的内容
+    采用 `docker cp vendor.js container_id:/usr/src/app/_site` 的方法临时修改
 
 [elasticsearch-head 6.x 问题application/x-www-form-urlencoded](https://blog.csdn.net/qq_30540299/article/details/84103282)
+
+[java.lang.IncompatibleClassChangeError: Found class org.elasticsearch.common.bytes.BytesReference, but interface was expected...](https://www.cnblogs.com/dalianpai/p/13144584.html)
+
+[Caused by: ElasticsearchException\[Elasticsearch exception \[type=illegal_argument_exception, reason=Fielddata is disabled on text fields by default...](https://www.jianshu.com/p/ab100d6d843f)
 
 ## 参考用例
 

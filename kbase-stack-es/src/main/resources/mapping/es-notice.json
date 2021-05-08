@@ -1,7 +1,25 @@
 {
   "properties": {
     "id": {
-      "type" : "text",
+      "type" : "keyword",
+      "fields" : {
+        "keyword" : {
+          "type" : "keyword",
+          "ignore_above" : 256
+        }
+      }
+    },
+    "contentCN": {
+      "type" : "keyword",
+      "fields" : {
+        "keyword" : {
+          "type" : "keyword",
+          "ignore_above" : 256
+        }
+      }
+    },
+    "desc" : {
+      "type" : "keyword",
       "fields" : {
         "keyword" : {
           "type" : "keyword",
@@ -10,13 +28,9 @@
       }
     },
     "title": {
-      "type" : "text",
-      "fields" : {
-        "keyword" : {
-          "type" : "keyword",
-          "ignore_above" : 256
-        }
-      }
+      "type": "text",
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_smart"
     },
     "content": {
       "type": "text",
