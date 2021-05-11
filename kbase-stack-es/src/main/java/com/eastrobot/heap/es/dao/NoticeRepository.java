@@ -3,9 +3,15 @@
  */
 package com.eastrobot.heap.es.dao;
 
+import com.eastrobot.heap.es.config.Constants;
 import com.eastrobot.heap.es.entity.Notice;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.elasticsearch.annotations.Highlight;
+import org.springframework.data.elasticsearch.annotations.HighlightField;
+import org.springframework.data.elasticsearch.annotations.HighlightParameters;
+import org.springframework.data.elasticsearch.core.SearchHit;
+import org.springframework.data.elasticsearch.core.SearchPage;
 import org.springframework.data.elasticsearch.repository.ElasticsearchCrudRepository;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
@@ -19,8 +25,18 @@ import java.util.Optional;
  */
 public interface NoticeRepository extends ElasticsearchRepository<Notice, String> {
 
+    /**
+     * 查询关键词，会自动右侧添加*，如，参数为服务，那么搜索的实质关键词是 服务*
+     * @param title
+     * @return
+     */
     Optional<List<Notice>> findByTitleLike(String title);
 
+    /**
+     * 分词搜索
+     * @param title
+     * @return
+     */
     Optional<List<Notice>> findByTitle(String title);
 
     Optional<List<Notice>> findByContentCNLike(String contentCN);
@@ -33,6 +49,18 @@ public interface NoticeRepository extends ElasticsearchRepository<Notice, String
      * @param pageable
      * @return
      */
-    Optional<Page<Notice>> findByTitleLike(String title, Pageable pageable);
+    Optional<Page<Notice>> findByTitle(String title, Pageable pageable);
+
+    /**
+     *
+     * @param title
+     * @param pageable
+     * @return
+     */
+    @Highlight(
+            fields = {@HighlightField(name="title"), @HighlightField(name = "content")},
+            parameters = @HighlightParameters(preTags = Constants.HL_PRE_TAG, postTags = Constants.HL_POST_TAG)
+    )
+    SearchPage<Notice> findByTitleOrContent(String title, String content, Pageable pageable);
 
 }

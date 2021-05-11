@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.elasticsearch.core.SearchHit;
+import org.springframework.data.elasticsearch.core.SearchPage;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ResourceUtils;
 
@@ -90,6 +92,25 @@ public class NoticeRepositoryTests {
         System.out.println(page.getTotalElements());
         System.out.println(page.getTotalPages());
         page.forEach(System.out::println);
+
+    }
+
+    @Test
+    public void testFindPage2(){
+        PageRequest pageable = PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "contentCN"));
+        SearchPage<Notice> searchPage = noticeRepository.findByTitleOrContent("和服", "服务", pageable);
+        System.out.println(searchPage.getTotalElements());
+        System.out.println(searchPage.getTotalPages());
+
+        System.out.println(searchPage.getSearchHits().getTotalHits());
+
+        searchPage.forEach(noticeSearchHit -> {
+            System.out.println(noticeSearchHit.getContent().getContent());
+
+            System.out.println(noticeSearchHit.getHighlightField("title").get(0));
+            System.out.println(noticeSearchHit.getHighlightField("content").get(0));
+
+        });
 
     }
 

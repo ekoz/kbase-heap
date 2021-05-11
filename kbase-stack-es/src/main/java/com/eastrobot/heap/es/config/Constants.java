@@ -8,4 +8,8 @@ package com.eastrobot.heap.es.config;
 public class Constants {
 
     public static final String INDEX_NAME = "ih_apple";
+
+    public static final String HL_PRE_TAG = "<span class=\"zx-hl\">";
+
+    public static final String HL_POST_TAG = "</span>";
 }
