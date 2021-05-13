@@ -36,4 +36,17 @@ public class UserBeanMapperTests {
 
     }
 
+    @Test
+    public void testBackward(){
+        User bean = User.builder()
+                .id("1")
+                .name("ekozhan")
+                .age(12)
+                .delFlag(Boolean.FALSE)
+                .build();
+        UserVO vo = beanMapper.backward(bean);
+        System.out.println(vo.toString());
+
+    }
+
 }

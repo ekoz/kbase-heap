@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 public class UserVO {
     private String id;
     private String name;
+    private String nameCN;
     private Integer age;
     private String birthday;
     private Integer delFlag;
