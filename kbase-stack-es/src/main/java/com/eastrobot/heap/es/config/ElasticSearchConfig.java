@@ -22,8 +22,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import javax.net.ssl.SSLContext;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -39,7 +41,7 @@ import java.security.NoSuchAlgorithmException;
 @ConfigurationProperties(prefix = "spring.data.elasticsearch.client.reactive")
 @EnableConfigurationProperties(ReactiveElasticsearchRestClientProperties.class)
 @Slf4j
-public class ElasticSearchConfig {
+public class ElasticSearchConfig extends AbstractElasticsearchConfiguration  {
 
     /**
      * https or http
@@ -49,11 +51,12 @@ public class ElasticSearchConfig {
     private int maxConnTotal = 128;
     private int maxRetryTimeout = 60000;
 
-    /**
-     * 初始化
-     */
-    @Bean(destroyMethod = "close")
-    public RestHighLevelClient restHighLevelClient(ReactiveElasticsearchRestClientProperties properties) {
+    @Resource
+    ReactiveElasticsearchRestClientProperties properties;
+
+    @SuppressWarnings("NullableProblems")
+    @Override
+    public RestHighLevelClient elasticsearchClient() {
         RestClientBuilder builder = RestClient.builder(properties.getEndpoints()
                 .stream()
                 .map(endpoint -> HTTPS + "://" + endpoint)

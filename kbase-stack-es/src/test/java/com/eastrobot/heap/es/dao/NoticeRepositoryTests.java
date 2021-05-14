@@ -4,6 +4,7 @@
 package com.eastrobot.heap.es.dao;
 
 import com.eastrobot.heap.es.entity.Notice;
+import com.google.common.collect.Lists;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,6 +54,7 @@ public class NoticeRepositoryTests {
         File file = ResourceUtils.getFile("classpath:docs.txt");
         System.out.println(file.getAbsolutePath());
         List<String> list = FileUtils.readLines(file, StandardCharsets.UTF_8);
+        List<Notice> noticeList = Lists.newArrayList();
         list.forEach(s -> {
             Notice notice = Notice.builder()
                     .id(UUID.randomUUID().toString())
@@ -61,8 +63,9 @@ public class NoticeRepositoryTests {
                     .contentCN(s)
                     .desc(s)
                     .build();
-            noticeRepository.save(notice);
+            noticeList.add(notice);
         });
+        noticeRepository.saveAll(noticeList);
     }
 
     @Test
