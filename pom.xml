@@ -36,6 +36,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <derby.version>10.14.2.0</derby.version>
         <lombok.version>1.18.6</lombok.version>
+        <guava.version>29.0-jre</guava.version>
+        <gson.version>2.8.5</gson.version>
+        <slf4j-api.version>1.7.26</slf4j-api.version>
+        <fastjson.version>1.2.71</fastjson.version>
+        <junit.version>4.13.1</junit.version>
         <skipTests>true</skipTests>
     </properties>
 
@@ -50,29 +55,27 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>29.0-jre</version>
+            <version>${guava.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.8.5</version>
+            <version>${gson.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.26</version>
+            <version>${slf4j-api.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.71</version>
+            <version>${fastjson.version}</version>
         </dependency>
-
-
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -89,7 +92,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 

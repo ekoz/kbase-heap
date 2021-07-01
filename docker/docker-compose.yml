@@ -3,7 +3,7 @@ version: '3'
 services:
   mysql-1:
     # 指定容器的名称
-    container_name: mysql-docker
+    container_name: mysql-1
     # 指定镜像和版本
     image: mysql:8.0
     ports:
@@ -14,15 +14,15 @@ services:
     restart: always
     volumes:
     # 挂载数据目录
-    - "${MYSQL_DIR}/data:/var/lib/mysql"
+    - "${GLOBAL_DIR}/data_mysql:/var/lib/mysql"
     # 挂载配置文件目录
-  #      - "${MYSQL_DIR}/config:/etc/mysql/conf.d"
+  #      - "${GLOBAL_DIR}/config:/etc/mysql/conf.d"
   redis-1:
-    container_name: redis-docker
+    container_name: redis-1
     image: redis:5.0.0
     command: redis-server --requirepass ${GLOBAL_PASSWORD}
     ports:
     - "6379:6379"
     restart: always
     volumes:
-    - "${MYSQL_DIR}/data_redis:/data"
+    - "${GLOBAL_DIR}/data_redis:/data"
