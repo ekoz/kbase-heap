@@ -1,4 +1,6 @@
-version: '2'
+version: '3'
+
+# docker-compose --env-file ../.env up -d
 services:
   neo4j-1:
     container_name: neo4j-1
@@ -7,11 +9,11 @@ services:
       - "7474:7474"
       - "7687:7687"
     environment:
-      NEO4J_AUTH: neo4j/neo4j88
+      NEO4J_AUTH: neo4j/${GLOBAL_PASSWORD}
     restart: always
     volumes:
       # 挂载数据目录
-      - "D:/mnt/data/infra/data_neo4j/data:/data"
-      - "D:/mnt/data/infra/data_neo4j/logs:/logs"
-      - "D:/mnt/data/infra/data_neo4j/import:/var/lib/neo4j/import"
-      - "D:/mnt/data/infra/data_neo4j/plugins:/plugins"
+      - "${GLOBAL_DIR}/data_neo4j/data:/data"
+      - "${GLOBAL_DIR}/data_neo4j/logs:/logs"
+      - "${GLOBAL_DIR}/data_neo4j/import:/var/lib/neo4j/import"
+      - "${GLOBAL_DIR}/data_neo4j/plugins:/plugins"
