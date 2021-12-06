@@ -7,5 +7,5 @@ package com.ibothub.heap.kafka.constant;
  */
 public class KafkaConstants {
 
-    public static final String USER_TOPIC = "ibothub_user";
+    public static final String USER_TOPIC = "ibothub_user_topic";
 }
