@@ -1,0 +1,16 @@
+version: '3'
+
+# docker-compose --env-file ../.env up -d
+services:
+  mongo-1:
+    container_name: mongo-1
+    image: mongo:3.4
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ${GLOBAL_PASSWORD}
+    volumes:
+      # 挂载数据目录
+      - "${GLOBAL_DIR}/data_mongo/data:/data/db"
