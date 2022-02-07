@@ -18,13 +18,8 @@ public class UserProducer {
     @Resource
     KafkaTemplate<String, UserMessage> kafkaTemplate;
 
-    public void send(){
-        kafkaTemplate.send(KafkaConstants.USER_TOPIC, UserMessage.builder()
-                .username("关羽")
-                .age(32)
-                .id(1)
-                .sex(1)
-                .build());
+    public void send(UserMessage userMessage){
+        kafkaTemplate.send(KafkaConstants.USER_TOPIC, userMessage);
     }
 
 }

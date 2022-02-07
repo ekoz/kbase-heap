@@ -1,5 +1,6 @@
 package com.ibothub.heap.kafka.pipeline;
 
+import com.ibothub.heap.kafka.model.UserMessage;
 import com.ibothub.heap.kafka.pipeline.producer.UserProducer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,14 @@ public class UserProducerTests {
 
     @Test
     public void testSend(){
-        userProducer.send();
+
+        UserMessage userMessage = UserMessage.builder()
+                .username("关羽")
+                .age(32)
+                .id(1)
+                .sex(1)
+                .build();
+
+        userProducer.send(userMessage);
     }
 }

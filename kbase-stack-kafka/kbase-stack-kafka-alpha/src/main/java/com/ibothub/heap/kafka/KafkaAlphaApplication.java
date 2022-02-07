@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2021/1/28 下午7:51
  */
 @SpringBootApplication
-public class KafkaHelloApplication {
+public class KafkaAlphaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(KafkaHelloApplication.class, args);
+        SpringApplication.run(KafkaAlphaApplication.class, args);
     }
 }
