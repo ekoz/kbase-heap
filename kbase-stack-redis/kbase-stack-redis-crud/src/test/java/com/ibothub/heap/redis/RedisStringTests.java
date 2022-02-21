@@ -1,5 +1,5 @@
 /*
- * powered by https://megvii.com
+ * powered by http://ibothub.com
  */
 package com.ibothub.heap.redis;
 
@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author <a href="mailto:zhanzhao@megvii.com">eko.zhan</a>
+ * @author <a href="mailto:eko.zhan@outlook.com">eko.zhan</a>
  * @version v1.0
  * @date 2022/1/6 21:33
  */
