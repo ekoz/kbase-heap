@@ -1,11 +1,13 @@
 package com.ibothub.heap.flowable.web.controller;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.ibothub.heap.base.model.vo.ResponseEntity;
 import com.ibothub.heap.flowable.model.BeanConverter;
 import com.ibothub.heap.flowable.model.vo.ProcessInstanceVO;
 import com.ibothub.heap.flowable.model.vo.TaskInstanceVO;
 import com.ibothub.heap.flowable.model.vo.TaskVO;
+import com.ibothub.heap.flowable.service.BeanConverterContext;
 import com.ibothub.heap.flowable.util.FlowableUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -57,6 +59,9 @@ public class FlowableController {
 
     @Resource
     BeanConverter beanConverter;
+
+    @Resource
+    BeanConverterContext beanConverterContext;
 
 
     @ApiOperation("发起流程")
@@ -133,7 +138,19 @@ public class FlowableController {
 
         log.debug("总共处理 {} 条数据", list.size());
 
-        List<TaskInstanceVO> taskInstanceList = beanConverter.forwardTaskInstance(list);
+        list.forEach(historicTaskInstance -> {
+            HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery()
+                    .processInstanceId(historicTaskInstance.getProcessInstanceId())
+                    .singleResult();
+
+            log.debug("{} -> {}", historicProcessInstance.getName(), historicProcessInstance.getEndActivityId());
+
+        });
+
+        List<TaskInstanceVO> taskInstanceList = Lists.newArrayList();
+
+        taskInstanceList = beanConverter.forwardTaskInstance(list, taskInstanceList, beanConverterContext);
+
         return ResponseEntity.ok(taskInstanceList);
     }
 

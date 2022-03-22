@@ -2,6 +2,8 @@ package com.ibothub.heap.flowable.service;
 
 import com.google.common.collect.Maps;
 import com.ibothub.heap.flowable.config.FlowableConstants;
+import com.ibothub.heap.flowable.model.BeanConverter;
+import com.ibothub.heap.flowable.model.vo.TaskInstanceVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.assertj.core.util.Lists;
@@ -50,6 +52,12 @@ public class TaskServiceTests {
     @Resource
     HistoryService historyService;
 
+    @Resource
+    BeanConverterContext beanConverterContext;
+
+    @Resource
+    BeanConverter beanConverter;
+
 
     /**
      * 我发起的
@@ -87,6 +95,11 @@ public class TaskServiceTests {
         list.forEach(historicTaskInstance -> {
             log.debug("{}, {}, {}", historicTaskInstance.getDurationInMillis(), historicTaskInstance.getWorkTimeInMillis(), historicTaskInstance.getDescription());
         });
+
+        List<TaskInstanceVO> voList = Lists.newArrayList();
+        voList = beanConverter.forwardTaskInstance(list, voList, beanConverterContext);
+
+        voList.forEach(System.out::println);
     }
 
     /**

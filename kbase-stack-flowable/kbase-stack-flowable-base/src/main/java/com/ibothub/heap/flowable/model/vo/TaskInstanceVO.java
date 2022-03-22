@@ -37,4 +37,8 @@ public class TaskInstanceVO implements Serializable {
 
     private String processDefinitionKey;
 
+    private String taskName;
+
+    private String processInstanceId;
+
 }
