@@ -122,7 +122,8 @@ public class FlowableController {
                 .desc()
                 .list();
 
-        List<TaskVO> voList = beanConverter.forwardTask(list);
+        List<TaskVO> voList = Lists.newArrayList();
+        voList = beanConverter.forwardTask(list, voList, beanConverterContext);
         return ResponseEntity.ok(voList);
     }
 
@@ -134,6 +135,8 @@ public class FlowableController {
                 .createHistoricTaskInstanceQuery()
                 .taskAssignee(userId)
                 .finished()
+                .orderByTaskCreateTime()
+                .desc()
                 .list();
 
         log.debug("总共处理 {} 条数据", list.size());

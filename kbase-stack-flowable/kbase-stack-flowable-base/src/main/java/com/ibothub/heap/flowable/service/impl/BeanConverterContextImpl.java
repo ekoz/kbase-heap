@@ -1,6 +1,7 @@
 package com.ibothub.heap.flowable.service.impl;
 
 import com.ibothub.heap.flowable.model.vo.TaskInstanceVO;
+import com.ibothub.heap.flowable.model.vo.TaskVO;
 import com.ibothub.heap.flowable.service.BeanConverterContext;
 import org.flowable.engine.HistoryService;
 import org.flowable.engine.history.HistoricProcessInstance;
@@ -33,6 +34,21 @@ public class BeanConverterContextImpl implements BeanConverterContext {
     @Override
     public void fillTaskInstanceVO(List<TaskInstanceVO> voList) {
         voList.forEach(this::fillTaskInstanceVO);
+    }
+
+    @Override
+    public void fillTaskVO(TaskVO vo) {
+        HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery()
+                .processInstanceId(vo.getProcessInstanceId())
+                .singleResult();
+
+        vo.setTaskName(historicProcessInstance.getName());
+        vo.setStartUserId(historicProcessInstance.getStartUserId());
+    }
+
+    @Override
+    public void fillTaskVO(List<TaskVO> voList) {
+        voList.forEach(this::fillTaskVO);
     }
 
 }

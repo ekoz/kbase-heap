@@ -21,9 +21,9 @@ import java.util.List;
 public interface BeanConverter {
 
     @Mapping(source = "createTime", target="createTime", dateFormat = "yyyy-MM-dd HH:mm:ss")
-    TaskVO forwardTask(Task entity);
+    TaskVO forwardTask(Task entity, @MappingTarget TaskVO vo, @Context BeanConverterContext context);
 
-    List<TaskVO> forwardTask(List<Task> list);
+    List<TaskVO> forwardTask(List<Task> list, @MappingTarget List<TaskVO> voList, @Context BeanConverterContext context);
 
     @Mapping(source = "startTime", target="startTime", dateFormat = "yyyy-MM-dd HH:mm:ss")
     @Mapping(source = "endTime", target="endTime", dateFormat = "yyyy-MM-dd HH:mm:ss")

@@ -34,6 +34,11 @@ public class TaskVO<T> implements Serializable {
 
     private String createTime;
 
+    private String taskName;
+
+    private String startUserId;
+
+
     private T entity;
 
 }
