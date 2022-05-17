@@ -5,12 +5,14 @@ package com.ibothub.heap.flowable.web.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.ibothub.heap.base.model.vo.ResponseEntity;
 import com.ibothub.heap.flowable.model.BeanConverter;
 import com.ibothub.heap.flowable.model.entity.Expense;
 import com.ibothub.heap.flowable.model.vo.ProcessInstanceVO;
 import com.ibothub.heap.flowable.model.vo.TaskVO;
+import com.ibothub.heap.flowable.service.BeanConverterContext;
 import com.ibothub.heap.flowable.util.FlowableUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -59,6 +61,9 @@ public class ExpenseController {
 
     @Resource
     BeanConverter beanConverter;
+
+    @Resource
+    BeanConverterContext beanConverterContext;
 
     @ApiOperation("test")
     @PostMapping("test")
@@ -138,7 +143,9 @@ public class ExpenseController {
                 .desc()
                 .list();
 
-        List<TaskVO> voList = beanConverter.forwardTask(list);
+        List<TaskVO> voList = Lists.newArrayList();
+        voList = beanConverter.forwardTask(list, voList, beanConverterContext);
+
         voList.forEach(taskVO -> {
             Map<String, Object> variables = taskService.getVariables(taskVO.getId());
             ObjectMapper objectMapper = new ObjectMapper();

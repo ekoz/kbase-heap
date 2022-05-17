@@ -3,10 +3,10 @@ version: '3'
 services:
   elasticsearch-1:
     #    image: elasticsearch:6.8.7
-    container_name: es-master-docker
+    container_name: elastic-master-docker
     build:
       context: .
-      dockerfile: Dockerfile-es
+      dockerfile: Dockerfile-elastic
     restart: always
     environment:
     - cluster.name=ibotEsApp
@@ -24,17 +24,17 @@ services:
     - 9200:9200
     - 9300:9300
     volumes:
-    #      - ./elasticsearch/master/conf/es-master.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    #      - ./elasticsearch/master/conf/elastic-master.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     - ./elasticsearch/master/data:/usr/share/elasticsearch/data
     - ./elasticsearch/master/logs:/usr/share/elasticsearch/logs
     networks:
     - esnet
   elasticsearch-2:
     # image: elasticsearch:6.8.7
-    container_name: es-slave-docker
+    container_name: elastic-slave-docker
     build:
       context: .
-      dockerfile: Dockerfile-es
+      dockerfile: Dockerfile-elastic
     environment:
     - cluster.name=ibotEsApp
     - bootstrap.memory_lock=true
@@ -43,7 +43,7 @@ services:
     - "http.cors.allow-origin=*"
     - "transport.host=0.0.0.0"
     - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
-    - "discovery.zen.ping.unicast.hosts=es-master-docker"
+    - "discovery.zen.ping.unicast.hosts=elastic-master-docker"
     ulimits:
       memlock:
         soft: -1
@@ -52,7 +52,7 @@ services:
     - 9201:9200
     - 9301:9300
     volumes:
-    #      - ./elasticsearch/slave1/conf/es-slave1.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    #      - ./elasticsearch/slave1/conf/elastic-slave1.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     - ./elasticsearch/slave1/data:/usr/share/elasticsearch/data
     - ./elasticsearch/slave1/logs:/usr/share/elasticsearch/logs
     networks:
@@ -64,13 +64,13 @@ services:
     # volumes:
     #   - ./kibana.yml:/usr/share/kibana/config/kibana.yml
     environment:
-    - ELASTICSEARCH_URL=http://es-master-docker:9200
+    - ELASTICSEARCH_URL=http://elastic-master-docker:9200
     ports:
     - "5601:5601"
     networks:
     - esnet
   es-head-1:
-    container_name: es-head-docker
+    container_name: elastic-head-docker
     image: mobz/elasticsearch-head:5
     restart: always
     ports:

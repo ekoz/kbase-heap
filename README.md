@@ -2,7 +2,7 @@
 
 ## Elastic
 
-[Elastic](./kbase-stack-es/README.md)
+[Elastic](./kbase-stack-elastic/README.md)
 
 ## Flowbale
 
