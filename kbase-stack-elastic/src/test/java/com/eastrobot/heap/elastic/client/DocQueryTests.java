@@ -1,6 +1,6 @@
 package com.eastrobot.heap.elastic.client;
 
-import com.eastrobot.heap.elastic.config.Constants;
+import com.eastrobot.heap.elastic.config.ElasticConstants;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -254,8 +254,8 @@ public class DocQueryTests {
         searchSourceBuilder.fetchSource(includes, excludes);
 
         HighlightBuilder highlightBuilder = new HighlightBuilder();
-        highlightBuilder.preTags(Constants.HL_PRE_TAG);
-        highlightBuilder.postTags(Constants.HL_POST_TAG);
+        highlightBuilder.preTags(ElasticConstants.HL_PRE_TAG);
+        highlightBuilder.postTags(ElasticConstants.HL_POST_TAG);
         highlightBuilder.field("title");
         highlightBuilder.field("content");
 

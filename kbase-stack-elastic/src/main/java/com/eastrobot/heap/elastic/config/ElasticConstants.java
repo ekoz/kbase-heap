@@ -5,7 +5,7 @@ package com.eastrobot.heap.elastic.config;
  * @version v1.0
  * @date 2021/4/13 19:53
  */
-public class Constants {
+public class ElasticConstants {
 
     public static final String INDEX_NAME = "ih_apple";
 

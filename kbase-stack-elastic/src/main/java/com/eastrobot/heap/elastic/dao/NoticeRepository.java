@@ -3,7 +3,7 @@
  */
 package com.eastrobot.heap.elastic.dao;
 
-import com.eastrobot.heap.elastic.config.Constants;
+import com.eastrobot.heap.elastic.config.ElasticConstants;
 import com.eastrobot.heap.elastic.entity.Notice;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -57,7 +57,7 @@ public interface NoticeRepository extends ElasticsearchRepository<Notice, String
      */
     @Highlight(
             fields = {@HighlightField(name="title"), @HighlightField(name = "content")},
-            parameters = @HighlightParameters(preTags = Constants.HL_PRE_TAG, postTags = Constants.HL_POST_TAG)
+            parameters = @HighlightParameters(preTags = ElasticConstants.HL_PRE_TAG, postTags = ElasticConstants.HL_POST_TAG)
     )
     SearchPage<Notice> findByTitleOrContent(String title, String content, Pageable pageable);
 

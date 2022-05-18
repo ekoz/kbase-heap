@@ -1,6 +1,6 @@
 package com.eastrobot.heap.elastic.service;
 
-import com.eastrobot.heap.elastic.config.Constants;
+import com.eastrobot.heap.elastic.config.ElasticConstants;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -105,7 +105,7 @@ public class IndexServiceTests {
                     .field("modifyDate", DateFormatUtils.format(Calendar.getInstance().getTime(), DEFAULT_DATETIME_PATTERN))
                     .endObject();
 
-            IndexRequest request = new IndexRequest(Constants.INDEX_NAME);
+            IndexRequest request = new IndexRequest(ElasticConstants.INDEX_NAME);
             request.source(xContentBuilder);
             bulkRequest.add(request);
         }
@@ -123,7 +123,7 @@ public class IndexServiceTests {
 
     @Test
     public void testDelete() throws IOException {
-        DeleteByQueryRequest request = new DeleteByQueryRequest(Constants.INDEX_NAME);
+        DeleteByQueryRequest request = new DeleteByQueryRequest(ElasticConstants.INDEX_NAME);
         request.setQuery(QueryBuilders.matchAllQuery());
         restHighLevelClient.deleteByQuery(request, RequestOptions.DEFAULT);
     }
