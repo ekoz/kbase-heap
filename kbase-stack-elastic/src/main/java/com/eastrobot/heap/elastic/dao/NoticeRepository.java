@@ -37,8 +37,18 @@ public interface NoticeRepository extends ElasticsearchRepository<Notice, String
      */
     Optional<List<Notice>> findByTitle(String title);
 
+    /**
+     * keyword
+     * @param contentCN
+     * @return
+     */
     Optional<List<Notice>> findByContentCNLike(String contentCN);
 
+    /**
+     * text
+     * @param content
+     * @return
+     */
     Optional<List<Notice>> findByContentLike(String content);
 
     /**

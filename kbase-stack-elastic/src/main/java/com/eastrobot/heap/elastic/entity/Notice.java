@@ -17,7 +17,8 @@ import java.io.Serializable;
  * @version v1.0
  * @date 2020/4/29 16:42
  */
-@Data
+@Getter
+@Setter
 @Builder
 @Accessors(chain = true)
 @Document(indexName="notice", type="_doc")
@@ -29,8 +30,10 @@ public class Notice implements Serializable {
 
     @Id
     private String id;
+
     @Field
     private String title;
+
     @Field
     private String content;
     @Field

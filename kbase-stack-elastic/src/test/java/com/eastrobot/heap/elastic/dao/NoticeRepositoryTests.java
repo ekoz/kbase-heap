@@ -6,13 +6,22 @@ package com.eastrobot.heap.elastic.dao;
 import com.eastrobot.heap.elastic.entity.Notice;
 import com.google.common.collect.Lists;
 import org.apache.commons.io.FileUtils;
+import org.elasticsearch.index.query.MatchQueryBuilder;
+import org.elasticsearch.index.query.MoreLikeThisQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.TermQueryBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.SearchPage;
+import org.springframework.data.elasticsearch.core.query.MoreLikeThisQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.ResourceUtils;
 
@@ -34,6 +43,9 @@ public class NoticeRepositoryTests {
 
     @Resource
     NoticeRepository noticeRepository;
+
+    @Resource
+    ElasticsearchOperations elasticsearchOperations;
 
     @Test
     public void testSave(){
@@ -153,6 +165,45 @@ public class NoticeRepositoryTests {
         noticeRepository.findByContentLike("和服")
                 .ifPresent(list -> list.forEach(notice -> System.out.println(notice.toString())))
         ;
+    }
+
+    @Test
+    public void testSearchSimilar(){
+        PageRequest pageable = PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC, "title"));
+        Notice example = Notice.builder().id("39f184ad-b690-4fc5-aa23-163078d4b16b").build();
+        Page<Notice> page = noticeRepository.searchSimilar(example, new String[]{"title", "content"}, pageable);
+
+        System.out.println(page.getTotalElements());
+        System.out.println(page.getTotalPages());
+        page.forEach(System.out::println);
+    }
+
+    @Test
+    public void testTermQuery(){
+
+        MatchQueryBuilder matchQueryBuilder = QueryBuilders.matchQuery("title", "美国");
+
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        NativeSearchQuery query = nativeSearchQueryBuilder.withQuery(matchQueryBuilder).build();
+
+        SearchHits<Notice> searchHits = elasticsearchOperations.search(query, Notice.class);
+        searchHits.getSearchHits().forEach(System.out::println);
+    }
+
+    @Test
+    public void testSearch(){
+
+        MoreLikeThisQueryBuilder moreLikeThisQueryBuilder = QueryBuilders.moreLikeThisQuery(new String[]{"title"}, new String[]{"美国特朗普"}, null);
+        moreLikeThisQueryBuilder.minDocFreq(1);
+        moreLikeThisQueryBuilder.minTermFreq(1);
+        moreLikeThisQueryBuilder.minimumShouldMatch("10%");
+
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        NativeSearchQuery query = nativeSearchQueryBuilder.withQuery(moreLikeThisQueryBuilder).build();
+
+        SearchHits<Notice> searchHits = elasticsearchOperations.search(query, Notice.class);
+        searchHits.getSearchHits().forEach(System.out::println);
+
     }
 
 }

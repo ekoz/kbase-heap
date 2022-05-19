@@ -40,7 +40,7 @@ import java.security.NoSuchAlgorithmException;
 @ConfigurationProperties(prefix = "spring.data.elasticsearch.client.reactive")
 @EnableConfigurationProperties(ReactiveElasticsearchRestClientProperties.class)
 @Slf4j
-public class ElasticSearchConfig extends AbstractElasticsearchConfiguration  {
+public class ElasticConfig extends AbstractElasticsearchConfiguration  {
 
     /**
      * https or http
