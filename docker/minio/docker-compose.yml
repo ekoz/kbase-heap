@@ -1,0 +1,16 @@
+version: '2'
+services:
+  minio-1:
+    # sudo docker run -d -p 9000:9000 -p 9001:9001 -v /mnt/data/minio/data:/data minio/minio server /data --console-address ":9001"
+    container_name: minio-1
+    image: minio/minio
+    restart: always
+    volums:
+      - /mnt/data/minio/data:/data
+    command: server /data --console-address ":9001"
+    ports:
+      - "19000:9000"
+      - "19001:9001"
+    # environment:
+    # MINIO_ROOT_USER: minioadmin
+    # MINIO_ROOT_PASSWORD: minioadmin

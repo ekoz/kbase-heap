@@ -20,6 +20,7 @@
         <module>kbase-stack-mongo</module>
         <module>kbase-stack-flowable</module>
         <module>kbase-stack-base</module>
+        <module>kbase-stack-minio</module>
     </modules>
     <packaging>pom</packaging>
 
