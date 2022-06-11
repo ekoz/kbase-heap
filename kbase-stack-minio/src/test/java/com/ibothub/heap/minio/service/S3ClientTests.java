@@ -137,13 +137,15 @@ public class S3ClientTests {
 
 
         PutObjectResponse putObjectResponse = s3Client.putObject(putObjectRequest, RequestBody.fromFile(file));
+
+
         System.out.println(putObjectResponse);
     }
 
     @Test
     public void testGetObject() throws IOException {
 
-        String key = "2ec63a7c-1397-4762-b3c8-332ff70f4ce8";
+        String key = "1b646df6-d4f6-4db0-b6ce-8cf072c6629f";
 
         GetObjectRequest getObjectRequest = GetObjectRequest
                 .builder()

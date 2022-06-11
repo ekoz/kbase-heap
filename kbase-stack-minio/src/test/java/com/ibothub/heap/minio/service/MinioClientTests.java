@@ -1,9 +1,6 @@
 package com.ibothub.heap.minio.service;
 
-import io.minio.BucketExistsArgs;
-import io.minio.MakeBucketArgs;
-import io.minio.MinioClient;
-import io.minio.SetBucketLifecycleArgs;
+import io.minio.*;
 import io.minio.errors.*;
 import io.minio.messages.*;
 import org.assertj.core.util.Lists;
@@ -59,8 +56,6 @@ public class MinioClientTests {
                         .config(lifecycleConfiguration)
                         .build()
         );
-
-
 
     }
 

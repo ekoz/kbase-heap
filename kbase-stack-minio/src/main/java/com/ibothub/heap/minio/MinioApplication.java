@@ -1,5 +1,6 @@
 package com.ibothub.heap.minio;
 
+import com.ibothub.heap.base.config.SwaggerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version v1.0
  * @date 2022/5/25 17:31
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.ibothub.heap.minio"}, scanBasePackageClasses = SwaggerConfig.class)
 public class MinioApplication {
 
     public static void main(String[] args) {

@@ -1,7 +1,7 @@
 /*
  * powered by https://zhengxinacc.com
  */
-package com.ibothub.heap.redis.web.Controller;
+package com.ibothub.heap.redis.web.controller;
 
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
