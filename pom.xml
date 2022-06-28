@@ -21,6 +21,7 @@
         <module>kbase-stack-flowable</module>
         <module>kbase-stack-base</module>
         <module>kbase-stack-minio</module>
+        <module>kbase-stack-xxl</module>
     </modules>
     <packaging>pom</packaging>
 
