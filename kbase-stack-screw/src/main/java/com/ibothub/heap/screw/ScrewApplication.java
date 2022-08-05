@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version v1.0
  * @date 2022/8/3 20:43
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.ibothub.heap.screw", "com.ibothub.heap.base"})
 public class ScrewApplication {
 
     public static void main(String[] args) {

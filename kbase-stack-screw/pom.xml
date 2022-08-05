@@ -12,7 +12,8 @@
     <artifactId>kbase-stack-screw</artifactId>
 
     <properties>
-        <screw.version>1.0.3</screw.version>
+        <screw.version>1.0.5</screw.version>
+        <freemarker.version>2.3.30</freemarker.version>
     </properties>
 
     <dependencies>
@@ -23,14 +24,30 @@
         </dependency>
 
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
         <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.30</version>
+            <version>${freemarker.version}</version>
         </dependency>
 
         <dependency>

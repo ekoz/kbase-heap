@@ -2,6 +2,8 @@ package com.ibothub.heap.screw.service;
 
 import com.ibothub.heap.screw.model.vo.req.DriverReq;
 
+import java.io.File;
+
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
  * @version v1.0
@@ -9,5 +11,7 @@ import com.ibothub.heap.screw.model.vo.req.DriverReq;
  */
 public interface ScrewService {
 
-    void create(DriverReq request);
+    String create(DriverReq request);
+
+    File getFile(String fileName);
 }
