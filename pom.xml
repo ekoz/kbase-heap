@@ -8,7 +8,6 @@
     <modules>
         <module>kbase-stack-mq</module>
         <module>kbase-stack-proxy</module>
-        <module>kbase-stack-derby</module>
         <module>kbase-stack-thread</module>
         <module>kbase-stack-jvm</module>
         <module>kbase-stack-prac</module>

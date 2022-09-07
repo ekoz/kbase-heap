@@ -12,6 +12,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>kbase-stack-sqlite</module>
+    <module>kbase-stack-derby</module>
   </modules>
 
   <artifactId>kbase-stack-database</artifactId>
