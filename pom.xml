@@ -23,6 +23,7 @@
         <module>kbase-stack-minio</module>
         <module>kbase-stack-xxl</module>
         <module>kbase-stack-screw</module>
+        <module>kbase-stack-database</module>
     </modules>
     <packaging>pom</packaging>
 
