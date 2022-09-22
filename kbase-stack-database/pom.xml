@@ -13,6 +13,7 @@
   <modules>
     <module>kbase-stack-sqlite</module>
     <module>kbase-stack-derby</module>
+    <module>kbase-stack-flyway</module>
   </modules>
 
   <artifactId>kbase-stack-database</artifactId>
