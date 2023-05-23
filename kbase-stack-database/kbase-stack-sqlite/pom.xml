@@ -12,7 +12,7 @@
   <artifactId>kbase-stack-sqlite</artifactId>
 
   <properties>
-    <sqlite-jdbc.version>3.36.0.3</sqlite-jdbc.version>
+    <sqlite-jdbc.version>3.41.2.2</sqlite-jdbc.version>
     <sqlite-dialect.version>0.1.2</sqlite-dialect.version>
     <easyexcel.version>3.1.1</easyexcel.version>
   </properties>
