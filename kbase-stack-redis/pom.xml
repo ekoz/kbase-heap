@@ -13,7 +13,7 @@
     <modules>
         <module>kbase-stack-redis-crud</module>
     </modules>
-    <artifactId>kbase-strack-redis</artifactId>
+    <artifactId>kbase-stack-redis</artifactId>
 
     <properties>
         <jedis.version>3.7.0</jedis.version>
