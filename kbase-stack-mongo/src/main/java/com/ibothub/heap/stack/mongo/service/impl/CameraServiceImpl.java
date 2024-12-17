@@ -6,7 +6,7 @@ import com.ibothub.heap.stack.mongo.util.PolygonUtil;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.gavaghan.geodesy.GlobalCoordinates;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.GeoResult;

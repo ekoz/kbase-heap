@@ -15,7 +15,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * 自定义 realm，将认证/授权数据的读取方法转为数据库实现

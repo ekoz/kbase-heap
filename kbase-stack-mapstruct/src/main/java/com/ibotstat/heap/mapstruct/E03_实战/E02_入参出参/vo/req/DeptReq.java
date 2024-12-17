@@ -3,7 +3,7 @@ package com.ibotstat.heap.mapstruct.E03_实战.E02_入参出参.vo.req;
 import com.ibotstat.heap.mapstruct.E03_实战.E01_继承.common.BaseVO;
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 
 /**
  * @author <a href="mailto:zhanzhao@outlook.com">eko.zhan</a>

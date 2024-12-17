@@ -4,7 +4,7 @@ import com.ibothub.heap.stack.mongo.model.entity.Camera;
 import com.ibothub.heap.stack.mongo.util.PolygonUtil;
 import java.io.IOException;
 import java.util.List;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.gavaghan.geodesy.GlobalCoordinates;
 import org.junit.Test;
 import org.junit.runner.RunWith;

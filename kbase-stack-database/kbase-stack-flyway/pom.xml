@@ -4,8 +4,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <artifactId>kbase-stack-database</artifactId>
-    <groupId>com.eastrobot</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.ibothub.heap</groupId>
+    <version>${revision}</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
@@ -18,7 +18,7 @@
   <dependencies>
 
     <dependency>
-      <groupId>com.eastrobot</groupId>
+      <groupId>com.ibothub.heap</groupId>
       <artifactId>kbase-stack-base</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -29,8 +29,8 @@
     </dependency>
 
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
     </dependency>
 
     <dependency>

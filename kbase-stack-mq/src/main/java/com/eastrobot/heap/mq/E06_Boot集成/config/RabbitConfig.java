@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -71,7 +71,7 @@ public class RabbitConfig {
         // 若使用confirm-callback或return-callback，必须要配置publisherConfirms或publisherReturns为true
         // 每个rabbitTemplate只能有一个confirm-callback和return-callback，如果这里配置了，那么写生产者的时候不能再写confirm-callback和return-callback
         // 使用return-callback时必须设置mandatory为true，或者在配置中设置mandatory-expression的值为true
-        connectionFactory.setPublisherConfirms(true);
+//        connectionFactory.setPublisherConfirms(true);
         connectionFactory.setPublisherReturns(true);
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMandatory(true);
@@ -86,7 +86,7 @@ public class RabbitConfig {
             public void confirm(CorrelationData correlationData, boolean ack, String cause) {
                 String message = "";
                 if (correlationData!=null){
-                    message = new String(correlationData.getReturnedMessage().getBody(), StandardCharsets.UTF_8);
+                    message = new String(correlationData.getReturned().getMessage().getBody(), StandardCharsets.UTF_8);
                 }
                 if(ack){
                     log.info("消息发送成功: correlationData({}),ack({}),cause({})", message, ack, cause);
@@ -95,10 +95,10 @@ public class RabbitConfig {
                 }
             }
         });
-        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
+        rabbitTemplate.setReturnsCallback(new RabbitTemplate.ReturnsCallback() {
             @Override
-            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-                log.info("消息丢失: exchange({}),route({}),replyCode({}),replyText({}),message:{}",exchange,routingKey,replyCode,replyText,message);
+            public void returnedMessage(ReturnedMessage returned) {
+                log.info("消息丢失: {}", returned.toString());
             }
         });
         return rabbitTemplate;

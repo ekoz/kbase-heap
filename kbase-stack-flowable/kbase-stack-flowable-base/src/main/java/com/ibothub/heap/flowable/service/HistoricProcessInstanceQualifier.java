@@ -5,7 +5,7 @@ import org.flowable.engine.history.HistoricProcessInstance;
 import org.mapstruct.Named;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>

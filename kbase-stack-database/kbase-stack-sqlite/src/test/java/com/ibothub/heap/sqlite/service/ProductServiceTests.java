@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.ibothub.heap.sqlite.dao.ProductRepository;
 import com.ibothub.heap.sqlite.listener.ProductListener;
 import com.ibothub.heap.sqlite.model.entity.Product;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

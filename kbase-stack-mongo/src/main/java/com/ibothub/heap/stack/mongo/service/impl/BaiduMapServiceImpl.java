@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

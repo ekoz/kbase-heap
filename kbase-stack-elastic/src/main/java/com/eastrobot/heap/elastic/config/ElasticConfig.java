@@ -3,6 +3,10 @@
  */
 package com.eastrobot.heap.elastic.config;
 
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import javax.net.ssl.SSLContext;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
@@ -15,21 +19,12 @@ import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
-import org.elasticsearch.client.RestHighLevelClient;
-import org.springframework.boot.autoconfigure.data.elasticsearch.ReactiveElasticsearchRestClientProperties;
+import org.elasticsearch.client.RestClientBuilder.HttpClientConfigCallback;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
-import org.springframework.util.StringUtils;
-
-import javax.annotation.Resource;
-import javax.net.ssl.SSLContext;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
@@ -39,9 +34,9 @@ import java.security.NoSuchAlgorithmException;
 @Data
 @Configuration
 @ConfigurationProperties(prefix = "spring.data.elasticsearch.client.reactive")
-@EnableConfigurationProperties(ReactiveElasticsearchRestClientProperties.class)
+@EnableConfigurationProperties
 @Slf4j
-public class ElasticConfig extends AbstractElasticsearchConfiguration  {
+public class ElasticConfig  {
 
     /**
      * https or http
@@ -51,45 +46,27 @@ public class ElasticConfig extends AbstractElasticsearchConfiguration  {
     private int maxConnTotal = 128;
     private int maxRetryTimeout = 60000;
 
-    @Resource
-    ReactiveElasticsearchRestClientProperties properties;
+    @Value("${spring.data.elasticsearch.client.reactive.username}")
+    private String username;
+    @Value("${spring.data.elasticsearch.client.reactive.password}")
+    private String password;
 
-    @SuppressWarnings("NullableProblems")
-    @Override
-    public RestHighLevelClient elasticsearchClient() {
-        RestClientBuilder builder = RestClient.builder(properties.getEndpoints()
-                .stream()
-                .map(endpoint -> HTTPS + "://" + endpoint)
-                .map(HttpHost::create)
-                .toArray(HttpHost[]::new));
+    @Bean
+    public RestClient restClient() {
+        final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(username, password));
 
-        // elastic http 连接池设置
-        builder.setHttpClientConfigCallback(httpClientBuilder -> {
-            setSSLContext(httpClientBuilder);
-            setCredentialsProvider(httpClientBuilder, properties);
-            return httpClientBuilder.setMaxConnPerRoute(maxConnPerRoute).setMaxConnTotal(maxConnTotal);
-        })
-                .setRequestConfigCallback(requestConfigBuilder -> requestConfigBuilder.setConnectTimeout((int)properties.getConnectionTimeout().toMillis())
-                        .setSocketTimeout((int)properties.getSocketTimeout().toMillis()));
+        HttpHost host = new HttpHost("localhost", 9200);
 
-        return new RestHighLevelClient(builder);
-    }
+      return RestClient.builder(host)
+            .setHttpClientConfigCallback(new HttpClientConfigCallback() {
 
-    /**
-     * 设置 elastic basic 登录验证
-     * @param builder
-     * @param properties
-     */
-    private void setCredentialsProvider(HttpAsyncClientBuilder builder, ReactiveElasticsearchRestClientProperties properties) {
-        if (StringUtils.isEmpty(properties.getUsername()) || StringUtils.isEmpty(properties.getPassword())) {
-            log.warn("elastic 没有 用户名({})或者密码({})", properties.getUsername(), properties.getPassword());
-        } else {
-            // 配置 用户名密码认证
-            CredentialsProvider provider = new BasicCredentialsProvider();
-            UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(properties.getUsername(), properties.getPassword());
-            provider.setCredentials(AuthScope.ANY, credentials);
-            builder.setDefaultCredentialsProvider(provider);
-        }
+                @Override
+                public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
+                    httpClientBuilder.disableAuthCaching();
+                    return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+                }
+            }).build();
     }
 
     /**

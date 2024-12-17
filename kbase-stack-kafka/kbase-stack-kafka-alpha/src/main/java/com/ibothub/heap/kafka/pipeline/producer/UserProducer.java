@@ -5,7 +5,7 @@ import com.ibothub.heap.kafka.model.UserMessage;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>

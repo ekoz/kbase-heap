@@ -7,7 +7,7 @@ import com.eastrobot.heap.mq.RabbitConstant;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>

@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Setter
 @Builder
 @Accessors(chain = true)
-@Document(indexName="notice", type="_doc")
+@Document(indexName="notice")
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor

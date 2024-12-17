@@ -2,7 +2,7 @@ package com.ibothub.heap.stack.mongo.dao;
 
 import com.ibothub.heap.stack.mongo.model.entity.Camera;
 import com.ibothub.heap.stack.mongo.model.vo.CameraLocation;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

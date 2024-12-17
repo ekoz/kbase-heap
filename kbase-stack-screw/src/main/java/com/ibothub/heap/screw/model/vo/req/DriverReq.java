@@ -3,7 +3,7 @@ package com.ibothub.heap.screw.model.vo.req;
 import lombok.Data;
 import org.apache.commons.lang.StringUtils;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
