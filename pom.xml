@@ -55,6 +55,7 @@
         <swagger.version>2.10.0</swagger.version>
         <commons-lang3.version>3.10</commons-lang3.version>
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <commons-io.version>2.18.0</commons-io.version>
         <mapstruct.version>1.6.3</mapstruct.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <mybatis-plus.version>3.4.0</mybatis-plus.version>
@@ -152,8 +153,8 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
 

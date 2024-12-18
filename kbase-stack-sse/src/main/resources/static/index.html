@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>SSE Samples</title>
+</head>
+<body>
+
+<h1>Server-Sent Events (SSE) Client</h1>
+<div id="messages"></div>
+<input type="text" id="messageInput" placeholder="Type a message to send" />
+<button onclick="sendMessage()">Send Message</button>
+
+<script type="text/javascript">
+  const baseUrl = '/api/v1/sse';
+  // 获取用户token
+  const token = 'ekozhan-token';
+  // 创建一个新的EventSource对象，并连接到服务器上的SSE端点
+  // 替换为你的SSE端点URL，原生的 EventSource 对象无法设置 headers，所以通过 query param 传入，仅支持 GET 请求
+  const eventSource = new EventSource(baseUrl + '/stream?token=' + token);
+
+  // 当接收到新消息时，触发onmessage事件
+  eventSource.onmessage = function(event) {
+    // 将接收到的消息添加到页面上
+    const messages = document.getElementById('messages');
+    const message = document.createElement('div');
+    message.textContent = '' + event.data;
+    messages.appendChild(message);
+  };
+
+  // 如果连接发生错误，触发onerror事件
+  eventSource.onerror = function(event) {
+    console.error('EventSource failed:', event);
+    // 关闭连接
+    eventSource.close();
+  };
+
+  // 发送消息到服务器
+  function sendMessage() {
+    const input = document.getElementById('messageInput');
+    const message = input.value;
+
+    // 使用Fetch API发送消息到服务器
+    fetch(baseUrl + '/send', { // 替换为你的发送消息的服务器端点URL
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({ message: message }),
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Message sent successfully');
+            input.value = ''; // 清空输入框
+        } else {
+            console.error('Failed to send message');
+        }
+    })
+    .catch(error => console.error('Error sending message:', error));
+  }
+</script>
+
+</body>
+</html>
