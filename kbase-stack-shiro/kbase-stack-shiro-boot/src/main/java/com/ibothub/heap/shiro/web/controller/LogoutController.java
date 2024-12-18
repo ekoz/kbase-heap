@@ -3,7 +3,7 @@
  */
 package com.ibothub.heap.shiro.web.controller;
 
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version v1.0
  * @date 2020/10/15 20:45
  */
-@Api("登出")
+@Tag(name = "登出")
 @RestController
 @RequestMapping("/logout")
 public class LogoutController {

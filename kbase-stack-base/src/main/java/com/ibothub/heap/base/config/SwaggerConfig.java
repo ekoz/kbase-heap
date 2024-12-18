@@ -1,19 +1,12 @@
 
 package com.ibothub.heap.base.config;
 
-import io.swagger.annotations.Api;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import java.util.Collections;
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 /**
  * @author <a href="mailto:eko.z@outlook.com">eko.zhan</a>
@@ -21,30 +14,18 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
  * @date 2020/10/15 20:25
  */
 @Configuration
-@EnableSwagger2WebMvc
+@OpenAPIDefinition
 public class SwaggerConfig {
 
     @Bean
-    public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .produces(Collections.singleton(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .consumes(Collections.singleton(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .ignoredParameterTypes(Authentication.class)
-                .useDefaultResponseMessages(false)
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
-                .paths(PathSelectors.any())
-                .build();
-    }
-
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("接口文档")
-                .termsOfServiceUrl("http://ibothub.com/")
-                .version("1.0")
-                .build();
+    public OpenAPI openAPI() {
+        return new OpenAPI()
+            .info(new Info()
+                .title("swagger api")
+                .contact(new Contact().name("eko.zhan").url("https://ekozhan.com"))
+                .description("swagger api")
+                .version("2.0.0")
+            );
     }
 
 }

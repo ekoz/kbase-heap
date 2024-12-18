@@ -14,8 +14,8 @@ import com.ibothub.heap.flowable.model.vo.ProcessInstanceVO;
 import com.ibothub.heap.flowable.model.vo.TaskVO;
 import com.ibothub.heap.flowable.service.BeanConverterContext;
 import com.ibothub.heap.flowable.util.FlowableUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.flowable.engine.*;
 //import org.flowable.engine.common.impl.identity.Authentication;
@@ -36,7 +36,7 @@ import java.util.Map;
  * @version v1.0
  * @date 2022/2/21 21:50
  */
-@Api(tags = "费用报销")
+@Tag(name = "费用报销")
 @RestController
 @RequestMapping("/api/expense")
 @Slf4j
@@ -65,7 +65,7 @@ public class ExpenseController {
     @Resource
     BeanConverterContext beanConverterContext;
 
-    @ApiOperation("test")
+    @Operation(summary = "test")
     @PostMapping("test")
     public ResponseEntity<String> test() {
 
@@ -76,7 +76,7 @@ public class ExpenseController {
         return ResponseEntity.ok();
     }
 
-    @ApiOperation("发起流程")
+    @Operation(summary = "发起流程")
     @PostMapping("start")
     public ResponseEntity<String> start(String userId, Double money, String summary) {
 
@@ -113,7 +113,7 @@ public class ExpenseController {
         return ResponseEntity.ok(String.format("提交成功.流程实例Id为：%s", processInstance.getId()));
     }
 
-    @ApiOperation("查询所有流程实例")
+    @Operation(summary = "查询所有流程实例")
     @GetMapping(value = "/historyList")
     public ResponseEntity<List<ProcessInstanceVO>> historyList(String userId){
 
@@ -132,7 +132,7 @@ public class ExpenseController {
         return ResponseEntity.ok(beanConverter.forwardProcessInstance(list));
     }
 
-    @ApiOperation("查询指定用户的待办事项")
+    @Operation(summary = "查询指定用户的待办事项")
     @GetMapping(value = "/taskList")
     public ResponseEntity<List<TaskVO>> taskList(String userId){
 
@@ -165,7 +165,7 @@ public class ExpenseController {
      *
      * @param taskId 任务ID
      */
-    @ApiOperation("通过")
+    @Operation(summary = "通过")
     @PostMapping(value = "apply")
     public ResponseEntity apply(String taskId) {
         Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
@@ -182,7 +182,7 @@ public class ExpenseController {
     /**
      * 拒绝
      */
-    @ApiOperation("拒绝")
+    @Operation(summary = "拒绝")
     @PostMapping(value = "reject")
     public ResponseEntity reject(String taskId) {
         HashMap<String, Object> map = Maps.newHashMap();
@@ -195,7 +195,7 @@ public class ExpenseController {
      * 删除所有流程实例
      * @return
      */
-    @ApiOperation("删除所有流程实例")
+    @Operation(summary = "删除所有流程实例")
     @DeleteMapping(value="deleteAll")
     public ResponseEntity deleteAll(){
 

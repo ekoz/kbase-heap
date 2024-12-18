@@ -9,8 +9,8 @@ import com.ibothub.heap.flowable.model.vo.TaskInstanceVO;
 import com.ibothub.heap.flowable.model.vo.TaskVO;
 import com.ibothub.heap.flowable.service.BeanConverterContext;
 import com.ibothub.heap.flowable.util.FlowableUtils;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.flowable.common.engine.impl.identity.Authentication;
 import org.flowable.engine.*;
@@ -34,7 +34,7 @@ import java.util.Map;
  * @version v1.0
  * @date 2022/3/10 20:41
  */
-@Api(tags = "工作流流转接口")
+@Tag(name = "工作流流转接口")
 @RestController
 @RequestMapping("/api/flowable")
 @Slf4j
@@ -64,7 +64,7 @@ public class FlowableController {
     BeanConverterContext beanConverterContext;
 
 
-    @ApiOperation("发起流程")
+    @Operation(summary = "发起流程")
     @PostMapping("start")
     public ResponseEntity<String> start(String userId, String deptLeader) {
         // 设置流程发起人，流程发起人默认是从 security 框架中获取的，可以在这里设置下
@@ -94,7 +94,7 @@ public class FlowableController {
      *
      * @param taskId 任务ID
      */
-    @ApiOperation("继续流转，通过或拒绝")
+    @Operation(summary = "继续流转，通过或拒绝")
     @PostMapping(value = "apply")
     public ResponseEntity apply(String taskId, Integer acceptType, String deptMgr) {
         Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
@@ -111,7 +111,7 @@ public class FlowableController {
     }
 
 
-    @ApiOperation("查询指定用户的待办事项")
+    @Operation(summary = "查询指定用户的待办事项")
     @GetMapping(value = "/listTodo")
     public ResponseEntity<List<TaskVO>> listTodo(String userId){
 
@@ -127,7 +127,7 @@ public class FlowableController {
         return ResponseEntity.ok(voList);
     }
 
-    @ApiOperation("查询指定用户的已办事项")
+    @Operation(summary = "查询指定用户的已办事项")
     @GetMapping(value = "/listDone")
     public ResponseEntity<List<TaskInstanceVO>> listDone(String userId){
 
@@ -157,7 +157,7 @@ public class FlowableController {
         return ResponseEntity.ok(taskInstanceList);
     }
 
-    @ApiOperation("查询指定用户的发起事项")
+    @Operation(summary = "查询指定用户的发起事项")
     @GetMapping(value = "/listCreated")
     public ResponseEntity<List<ProcessInstanceVO>> listCreated(String userId){
 

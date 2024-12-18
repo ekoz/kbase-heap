@@ -58,6 +58,7 @@
         <mapstruct.version>1.6.3</mapstruct.version>
         <org.mapstruct.version>1.6.3</org.mapstruct.version>
         <mybatis-plus.version>3.4.0</mybatis-plus.version>
+        <springdoc.version>2.7.0</springdoc.version>
         <skipTests>true</skipTests>
     </properties>
 

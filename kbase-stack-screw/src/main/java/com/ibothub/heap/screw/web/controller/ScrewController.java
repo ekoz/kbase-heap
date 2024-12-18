@@ -3,7 +3,7 @@ package com.ibothub.heap.screw.web.controller;
 import com.ibothub.heap.base.model.vo.ResponseEntity;
 import com.ibothub.heap.screw.model.vo.req.DriverReq;
 import com.ibothub.heap.screw.service.ScrewService;
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
@@ -22,7 +22,7 @@ import java.io.IOException;
  * @version v1.0
  * @date 2022/8/3 20:55
  */
-@Api
+@Tag(name = "Screw")
 @RestController
 @RequestMapping("/screw")
 @Slf4j

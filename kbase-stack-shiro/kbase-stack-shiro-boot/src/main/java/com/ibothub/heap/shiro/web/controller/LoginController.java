@@ -3,13 +3,11 @@
  */
 package com.ibothub.heap.shiro.web.controller;
 
-import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version v1.0
  * @date 2020/10/15 20:45
  */
-@Api("登录")
+@Tag(name = "登录")
 @RestController
 @RequestMapping("/login")
 public class LoginController {

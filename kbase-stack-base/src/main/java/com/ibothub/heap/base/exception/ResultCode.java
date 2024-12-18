@@ -1,6 +1,7 @@
 package com.ibothub.heap.base.exception;
 
-import io.swagger.annotations.ApiModel;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * <pre>
@@ -14,7 +15,7 @@ import io.swagger.annotations.ApiModel;
  * @version v1.0 , 2019-03-02 16:03
  * @see org.springframework.web.client.HttpClientErrorException.BadRequest
  */
-@ApiModel
+@Schema
 public enum ResultCode {
     /**
      * request handle success
