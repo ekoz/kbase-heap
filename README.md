@@ -121,3 +121,6 @@ JVM 浅析和线上系统性问题分析思路
 
 ## G1 GC 
 [Java Hotspot G1 GC的一些关键技术](https://tech.meituan.com/2016/09/23/g1.html)
+
+## ZGC
+[新一代垃圾回收器ZGC的探索与实践](https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html)
