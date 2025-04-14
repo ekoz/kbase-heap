@@ -124,3 +124,5 @@ JVM 浅析和线上系统性问题分析思路
 
 ## ZGC
 [新一代垃圾回收器ZGC的探索与实践](https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html)
+
+[Overview of ZGC](https://dev.java/learn/jvm/tool/garbage-collection/zgc-overview/)
