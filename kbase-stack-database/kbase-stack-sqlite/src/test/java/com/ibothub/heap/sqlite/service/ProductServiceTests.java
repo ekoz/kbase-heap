@@ -1,7 +1,6 @@
 package com.ibothub.heap.sqlite.service;
 
 import com.alibaba.excel.EasyExcel;
-import com.alibaba.fastjson.JSON;
 import com.ibothub.heap.sqlite.dao.ProductRepository;
 import com.ibothub.heap.sqlite.listener.ProductListener;
 import com.ibothub.heap.sqlite.model.entity.Product;
@@ -37,10 +36,8 @@ public class ProductServiceTests {
 
   @Test
   public void testFindAll(){
-    Iterable<Product> it = productRepository.findAll();
-
-    System.out.println(JSON.toJSONString(it));
-
+    productRepository.findAll()
+        .forEach(System.out::println);
   }
 
 

@@ -3,7 +3,7 @@ package com.ibothub.heap.sqlite.listener;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.read.listener.ReadListener;
 import com.alibaba.excel.util.ListUtils;
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.ibothub.heap.sqlite.dao.ProductRepository;
 import com.ibothub.heap.sqlite.model.entity.Product;
 import java.util.List;
