@@ -18,5 +18,6 @@ public class Dept {
 
     private String id;
     private String name;
+    private String alias;
     private Dept parent;
 }
