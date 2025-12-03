@@ -57,7 +57,8 @@ public class BaiduMapServiceImpl implements BaiduMapService {
     OkHttpClient okHttpClient = new OkHttpClient();
     final Request request = new Request.Builder()
         .url("http://map.baidu.com/?qt=bsi&c=" + cityCode)
-        .get()//默认就是GET请求，可以不写
+        // 默认就是GET请求，可以不写
+        .get()
         .build();
     Call call = okHttpClient.newCall(request);
     Response execute = call.execute();
