@@ -1,19 +1,19 @@
 package com.ibothub.heap.stack.mongo.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONArray;
+import com.alibaba.fastjson2.JSONObject;
 import com.google.common.collect.Lists;
 import com.ibothub.heap.stack.mongo.dao.CameraRepository;
 import com.ibothub.heap.stack.mongo.model.entity.Camera;
 import com.ibothub.heap.stack.mongo.model.vo.CameraLocation;
 import com.ibothub.heap.stack.mongo.service.BaiduMapService;
 import com.ibothub.heap.stack.mongo.util.BaiduMokatorToLngLat;
+import jakarta.annotation.Resource;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import jakarta.annotation.Resource;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
