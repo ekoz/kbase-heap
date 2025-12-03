@@ -1,10 +1,10 @@
 package com.ibotstat.heap.mapstruct.E01_官方demo;
 
-import com.alibaba.fastjson.JSON;
-import com.ibotstat.heap.mapstruct.E01_官方demo.vo.CarVO;
+import com.alibaba.fastjson2.JSON;
 import com.ibotstat.heap.mapstruct.E01_官方demo.entity.Car;
 import com.ibotstat.heap.mapstruct.E01_官方demo.entity.CarType;
 import com.ibotstat.heap.mapstruct.E01_官方demo.entity.ColorType;
+import com.ibotstat.heap.mapstruct.E01_官方demo.vo.CarVO;
 import org.junit.Test;
 
 /**

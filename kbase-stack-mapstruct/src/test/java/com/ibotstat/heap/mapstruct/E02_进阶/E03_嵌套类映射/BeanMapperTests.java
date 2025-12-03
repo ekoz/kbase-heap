@@ -1,6 +1,6 @@
 package com.ibotstat.heap.mapstruct.E02_进阶.E03_嵌套类映射;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.ibotstat.heap.mapstruct.E02_进阶.E03_嵌套类映射.vo.DeptVO;
 import com.ibotstat.heap.mapstruct.E02_进阶.E03_嵌套类映射.entity.Dept;
 import org.junit.Test;

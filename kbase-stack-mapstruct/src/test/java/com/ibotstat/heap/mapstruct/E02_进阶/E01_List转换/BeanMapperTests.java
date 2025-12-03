@@ -1,16 +1,14 @@
 package com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson2.JSON;
 import com.google.common.collect.Lists;
-import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.vo.RoleVO;
 import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.entity.Role;
 import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.entity.User;
+import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.vo.RoleVO;
 import com.ibotstat.heap.mapstruct.E02_进阶.E01_List转换.vo.UserVO;
-import org.junit.Test;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import org.junit.Test;
 
 /**
  * @author <a href="mailto:zhanzhao@outlook.com">eko.zhan</a>
